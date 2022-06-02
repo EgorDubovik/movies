@@ -60,23 +60,49 @@
                             <span class="login100-form-title">
 									Registration
 								</span>
-                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                        <div class="wrap-input100 validate-input input-group">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                             </a>
-                            <input class="input100 border-start-0 ms-0 form-control" type="text" placeholder="User name">
+                            <input class="input100 border-start-0 ms-0 form-control" type="text" placeholder="Company name" name="company_name">
                         </div>
                         <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="zmdi zmdi-email" aria-hidden="true"></i>
                             </a>
-                            <input class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email">
+                            <input class="input100 border-start-0 ms-0 form-control" type="email" name="email" placeholder="Email">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6 mb-0">
+                                <div class="wrap-input100 validate-input input-group">
+                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                        <i class="fa fa-wpforms" ></i>
+                                    </a>
+                                    <input class="input100 border-start-0 ms-0 form-control" type="email" name="dot" placeholder="DOT">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 mb-0">
+                                <div class="wrap-input100 validate-input input-group">
+                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                        <i class="fa fa-wpforms" ></i>
+                                    </a>
+                                    <input class="input100 border-start-0 ms-0 form-control" type="email" name="mc" placeholder="MC">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wrap-input100 validate-input input-group" id="Password-toggle">
+                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                <i class="zmdi zmdi-eye" aria-hidden="true"></i>
+                            </a>
+                            <input class="input100 border-start-0 ms-0 form-control" type="password" name="password" placeholder="Password">
                         </div>
                         <div class="wrap-input100 validate-input input-group" id="Password-toggle">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="zmdi zmdi-eye" aria-hidden="true"></i>
                             </a>
-                            <input class="input100 border-start-0 ms-0 form-control" type="password" placeholder="Password">
+                            <input class="input100 border-start-0 ms-0 form-control" type="password" name="password2" placeholder="Re-enter password">
                         </div>
                         <label class="custom-control custom-checkbox mt-4">
                             <input type="checkbox" class="custom-control-input">
