@@ -9,11 +9,9 @@ Route::get('/', function () {
 });
 
 Route::prefix("auth")->group(function(){
-    Route::get("register",function (){
-        return view("auth.register");
-    });
-    Route::post("register", [RegisterController::class,"create"]);
-    Route::get("login", function (){
+    Route::get("/register",function (){return view("auth.register"); });
+    Route::post("/register", [RegisterController::class,"create"]);
+    Route::get("/login", function (){
         return "login";
     });
 });

@@ -57,20 +57,24 @@
             <div class="container-login100">
                 <div class="wrap-login100 p-6" style="width:500px">
                     <form method="post" action="/auth/register" class="login100-form validate-form">
+                        @csrf
                             <span class="login100-form-title">
 									Registration
 								</span>
+                        @if($errors->any())
+                            @include("layout/error-message")
+                        @endif
                         <div class="wrap-input100 validate-input input-group">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                             </a>
-                            <input class="input100 border-start-0 ms-0 form-control" type="text" placeholder="Company name" name="company_name">
+                            <input class="input100 border-start-0 ms-0 form-control" type="text" placeholder="Company name" name="company_name" value="{{old('company_name')}}">
                         </div>
                         <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="zmdi zmdi-email" aria-hidden="true"></i>
                             </a>
-                            <input class="input100 border-start-0 ms-0 form-control" type="email" name="email" placeholder="Email">
+                            <input class="input100 border-start-0 ms-0 form-control" type="email" name="email" placeholder="Email" value="{{old('email')}}">
                         </div>
 
                         <div class="form-row">
@@ -79,7 +83,7 @@
                                     <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                         <i class="fa fa-wpforms" ></i>
                                     </a>
-                                    <input class="input100 border-start-0 ms-0 form-control" type="email" name="dot" placeholder="DOT">
+                                    <input class="input100 border-start-0 ms-0 form-control" type="text" name="dot" placeholder="DOT" value="{{old('dot')}}">
                                 </div>
                             </div>
                             <div class="form-group col-md-6 mb-0">
@@ -87,7 +91,7 @@
                                     <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                         <i class="fa fa-wpforms" ></i>
                                     </a>
-                                    <input class="input100 border-start-0 ms-0 form-control" type="email" name="mc" placeholder="MC">
+                                    <input class="input100 border-start-0 ms-0 form-control" type="text" name="mc" placeholder="MC" value="{{old('mc')}}">
                                 </div>
                             </div>
                         </div>
