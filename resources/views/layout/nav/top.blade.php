@@ -9,25 +9,9 @@
                      alt="logo">
             </a>
             <!-- LOGO -->
-            <div class="main-header-center ms-3 d-none d-lg-block">
-                <input type="text" class="form-control" id="typehead" placeholder="Search for results..." autocomplete="off">
-                <button class="btn px-0 pt-2"><i class="fe fe-search" aria-hidden="true"></i></button>
-            </div>
+
             <div class="d-flex order-lg-2 ms-auto header-right-icons">
-                <div class="dropdown d-none">
-                    <a href="javascript:void(0)" class="nav-link icon" data-bs-toggle="dropdown">
-                        <i class="fe fe-search"></i>
-                    </a>
-                    <div class="dropdown-menu header-search dropdown-menu-start">
-                        <div class="input-group w-100 p-2">
-                            <input type="text" class="form-control" placeholder="Search....">
-                            <div class="input-group-text btn btn-primary">
-                                <i class="fe fe-search" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- SEARCH -->
+
                 <button class="navbar-toggler navresponsive-toggler d-lg-none ms-auto" type="button"
                         data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4"
                         aria-controls="navbarSupportedContent-4" aria-expanded="false"
@@ -37,27 +21,8 @@
                 <div class="navbar navbar-collapse responsive-navbar p-0">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                         <div class="d-flex order-lg-2">
-                            <div class="dropdown d-lg-none d-flex">
-                                <a href="javascript:void(0)" class="nav-link icon" data-bs-toggle="dropdown">
-                                    <i class="fe fe-search"></i>
-                                </a>
-                                <div class="dropdown-menu header-search dropdown-menu-start">
-                                    <div class="input-group w-100 p-2">
-                                        <input type="text" class="form-control" placeholder="Search....">
-                                        <div class="input-group-text btn btn-primary">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex country">
-                                <a class="nav-link icon text-center" data-bs-target="#country-selector"
-                                   data-bs-toggle="modal">
-                                    <i class="fe fe-globe"></i><span
-                                        class="fs-16 ms-2 d-none d-xl-block">English</span>
-                                </a>
-                            </div>
-                            <!-- COUNTRY -->
+
+
                             <div class="d-flex country">
                                 <a class="nav-link icon theme-layout nav-link-bg layout-setting">
                                     <span class="dark-layout"><i class="fe fe-moon"></i></span>
@@ -65,123 +30,7 @@
                                 </a>
                             </div>
                             <!-- Theme-Layout -->
-                            <div class="dropdown  d-flex shopping-cart">
-                                <a class="nav-link icon text-center" data-bs-toggle="dropdown">
-                                    <i class="fe fe-shopping-cart"></i><span class="badge bg-secondary header-badge">4</span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <div class="drop-heading border-bottom">
-                                        <div class="d-flex">
-                                            <h6 class="mt-1 mb-0 fs-16 fw-semibold text-dark"> My Shopping Cart</h6>
-                                            <div class="ms-auto">
-                                                <span class="badge bg-danger-transparent header-badge text-danger fs-14">Hurry Up!</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="header-dropdown-list message-menu">
-                                        <div class="dropdown-item d-flex p-4">
-                                            <a href="cart.html" class="open-file"></a>
-                                            <span
-                                                class="avatar avatar-xl br-5 me-3 align-self-center cover-image"
-                                                data-bs-image-src="../assets/images/pngs/4.jpg"></span>
-                                            <div class="wd-50p">
-                                                <h5 class="mb-1">Flower Pot for Home Decor</h5>
-                                                <span>Status: <span class="text-success">In Stock</span></span>
-                                                <p class="fs-13 text-muted mb-0">Quantity: 01</p>
-                                            </div>
-                                            <div class="ms-auto text-end d-flex fs-16">
-                                                            <span class="fs-16 text-dark d-none d-sm-block px-4">
-                                                                $438
-                                                            </span>
-                                                <a href="javascript:void(0)" class="fs-16 btn p-0 cart-trash">
-                                                    <i class="fe fe-trash-2 border text-danger brround d-block p-2"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="dropdown-item d-flex p-4">
-                                            <a href="cart.html" class="open-file"></a>
-                                            <span
-                                                class="avatar avatar-xl br-5 me-3 align-self-center cover-image"
-                                                data-bs-image-src="../assets/images/pngs/6.jpg"></span>
-                                            <div class="wd-50p">
-                                                <h5 class="mb-1">Black Digital Camera</h5>
-                                                <span>Status: <span class="text-danger">Out Stock</span></span>
-                                                <p class="fs-13 text-muted mb-0">Quantity: 06</p>
-                                            </div>
-                                            <div class="ms-auto text-end d-flex">
-                                                            <span class="fs-16 text-dark d-none d-sm-block px-4">
-                                                                $867
-                                                            </span>
-                                                <a href="javascript:void(0)" class="fs-16 btn p-0 cart-trash">
-                                                    <i class="fe fe-trash-2 border text-danger brround d-block p-2"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="dropdown-item d-flex p-4">
-                                            <a href="cart.html" class="open-file"></a>
-                                            <span
-                                                class="avatar avatar-xl br-5 me-3 align-self-center cover-image"
-                                                data-bs-image-src="../assets/images/pngs/8.jpg"></span>
-                                            <div class="wd-50p">
-                                                <h5 class="mb-1">Stylish Rockerz 255 Ear Pods</h5>
-                                                <span>Status: <span class="text-success">In Stock</span></span>
-                                                <p class="fs-13 text-muted mb-0">Quantity: 05</p>
-                                            </div>
-                                            <div class="ms-auto text-end d-flex">
-                                                            <span class="fs-16 text-dark d-none d-sm-block px-4">
-                                                                $323
-                                                            </span>
-                                                <a href="javascript:void(0)" class="fs-16 btn p-0 cart-trash">
-                                                    <i class="fe fe-trash-2 border text-danger brround d-block p-2"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="dropdown-item d-flex p-4">
-                                            <a href="cart.html" class="open-file"></a>
-                                            <span
-                                                class="avatar avatar-xl br-5 me-3 align-self-center cover-image"
-                                                data-bs-image-src="../assets/images/pngs/1.jpg"></span>
-                                            <div class="wd-50p">
-                                                <h5 class="mb-1">Women Party Wear Dress</h5>
-                                                <span>Status: <span class="text-success">In Stock</span></span>
-                                                <p class="fs-13 text-muted mb-0">Quantity: 05</p>
-                                            </div>
-                                            <div class="ms-auto text-end d-flex">
-                                                            <span class="fs-16 text-dark d-none d-sm-block px-4">
-                                                                $867
-                                                            </span>
-                                                <a href="javascript:void(0)" class="fs-16 btn p-0 cart-trash">
-                                                    <i class="fe fe-trash-2 border text-danger brround d-block p-2"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="dropdown-item d-flex p-4">
-                                            <a href="cart.html" class="open-file"></a>
-                                            <span
-                                                class="avatar avatar-xl br-5 me-3 align-self-center cover-image"
-                                                data-bs-image-src="../assets/images/pngs/3.jpg"></span>
-                                            <div class="wd-50p">
-                                                <h5 class="mb-1">Running Shoes for men</h5>
-                                                <span>Status: <span class="text-success">In Stock</span></span>
-                                                <p class="fs-13 text-muted mb-0">Quantity: 05</p>
-                                            </div>
-                                            <div class="ms-auto text-end d-flex">
-                                                            <span class="fs-16 text-dark d-none d-sm-block px-4">
-                                                                $456
-                                                            </span>
-                                                <a href="javascript:void(0)" class="fs-16 btn p-0 cart-trash">
-                                                    <i class="fe fe-trash-2 border text-danger brround d-block p-2"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-divider m-0"></div>
-                                    <div class="dropdown-footer">
-                                        <a class="btn btn-primary btn-pill w-sm btn-sm py-2" href="checkout.html"><i class="fe fe-check-circle"></i> Checkout</a>
-                                        <span class="float-end p-2 fs-17 fw-semibold">Total: $6789</span>
-                                    </div>
-                                </div>
-                            </div>
+
                             <!-- CART -->
                             <div class="dropdown d-flex">
                                 <a class="nav-link icon full-screen-link nav-link-bg">
