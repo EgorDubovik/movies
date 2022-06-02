@@ -88,7 +88,7 @@
                             </a>
                         </div>
                         <div class="text-center pt-3">
-                            <p class="text-dark mb-0">Already have account?<a href="login.html" class="text-primary ms-1">Sign In</a></p>
+                            <p class="text-dark mb-0">Already have account?<a href="/auth/login" class="text-primary ms-1">Sign In</a></p>
                         </div>
                     </form>
                 </div>

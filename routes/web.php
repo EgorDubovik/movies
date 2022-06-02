@@ -7,6 +7,12 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::get("auth/register",function (){
-    return view("auth.register");
+Route::prefix("auth")->group(function(){
+    Route::get("register",function (){
+        return view("auth.register");
+    });
+    Route::get("login", function (){
+        return "login";
+    });
 });
+
