@@ -8,10 +8,14 @@ use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
-    public function create(RegisterRequest $request){
+
+    public function create(Request $request){
+        return view("auth.register");
+    }
+
+    public function store(RegisterRequest $request){
 
         $validate = $request->validate();
-
         return "true";
     }
 }
