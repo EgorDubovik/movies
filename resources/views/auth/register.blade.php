@@ -41,9 +41,7 @@
 <div class="">
 
     <!-- GLOABAL LOADER -->
-    <div id="global-loader">
-        <img src="{{ URL::asset('assets/images/loader.svg')}}" class="loader-img" alt="Loader">
-    </div>
+    @include("layout/loader")
     <!-- /GLOABAL LOADER -->
 
     <!-- PAGE -->
@@ -53,7 +51,7 @@
             <!-- CONTAINER OPEN -->
             <div class="col col-login mx-auto mt-7">
                 <div class="text-center">
-                    <img src="{{ URL::asset('assets/images/brand/logo-white.png')}}" class="header-brand-img m-0" alt="">
+                    <a href="/"> <img src="{{ URL::asset('assets/images/brand/logo-white.png')}}" class="header-brand-img m-0" alt=""></a>
                 </div>
             </div>
             <div class="container-login100">
