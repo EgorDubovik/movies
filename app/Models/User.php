@@ -23,6 +23,8 @@ class User extends Authenticatable
         'password',
         'mc',
         'dot',
+        'is_mover',
+        'is_driver'
     ];
 
     /**

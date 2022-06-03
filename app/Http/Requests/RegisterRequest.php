@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\RequiredIf;
 
 class RegisterRequest extends FormRequest
 {
@@ -29,7 +30,9 @@ class RegisterRequest extends FormRequest
             'password' => 'required',
             'password2' => 'required|same:password',
             'mc' => 'required',
-            'dot' => 'required'
+            'dot' => 'required',
+            'mover' =>  'required_without_all:driver',
+            'driver' => 'required_without_all:mover',
         ];
     }
 

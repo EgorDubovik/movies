@@ -95,6 +95,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-label" style="font-size: 14px;color: #8b8b8b;padding-left: 10px;">Check who you are</div>
+                        <div class="form-row" style="padding-bottom: 10px;">
+                            <div class="form-group col-md-6 mb-0">
+                                <div class="custom-controls-stacked">
+                                    <label class="custom-control custom-checkbox-md">
+                                        <input type="checkbox" class="custom-control-input" name="mover" value="1" >
+                                        <span class="custom-control-label">I am mover</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 mb-0">
+                                <label class="custom-control custom-checkbox-md">
+                                    <input type="checkbox" class="custom-control-input" name="driver" value="1">
+                                    <span class="custom-control-label">I am driver</span>
+                                </label>
+                            </div>
+                        </div>
 
                         <div class="wrap-input100 validate-input input-group" id="Password-toggle">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
@@ -102,6 +119,7 @@
                             </a>
                             <input class="input100 border-start-0 ms-0 form-control" type="password" name="password" placeholder="Password">
                         </div>
+
                         <div class="wrap-input100 validate-input input-group" id="Password-toggle">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="zmdi zmdi-eye" aria-hidden="true"></i>

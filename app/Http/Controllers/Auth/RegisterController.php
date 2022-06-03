@@ -16,12 +16,15 @@ class RegisterController extends Controller
 
     public function store(RegisterRequest $request){
 
+
         $user = User::create([
             'company_name' => $request->company_name,
             'email' => $request->email,
             'password' => password_hash($request->password, PASSWORD_BCRYPT),
             'mc' => $request->mc,
             'dot' => $request->dot,
+            'is_mover' => $request->has('mover'),
+            'is_driver' => $request->has('driver'),
             ]);
 
         return view('auth.register-done');
