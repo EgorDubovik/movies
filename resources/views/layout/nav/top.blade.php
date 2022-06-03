@@ -3,7 +3,7 @@
         <div class="d-flex">
             <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0)"></a>
             <!-- sidebar-toggle-->
-            <a class="logo-horizontal " href="index.html">
+            <a class="logo-horizontal " href="/">
                 <img src="../assets/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
                 <img src="../assets/images/brand/logo-3.png" class="header-brand-img light-logo1"
                      alt="logo">
@@ -197,6 +197,7 @@
                                 </a>
                             </div>
                             <!-- SIDE-MENU -->
+                            @if(Auth::check())
                             <div class="dropdown d-flex profile-1">
                                 <a href="javascript:void(0)" data-bs-toggle="dropdown" class="nav-link leading-none d-flex">
                                     <img src="../assets/images/users/21.jpg" alt="profile-user"
@@ -220,11 +221,12 @@
                                     <a class="dropdown-item" href="lockscreen.html">
                                         <i class="dropdown-icon fe fe-lock"></i> Lockscreen
                                     </a>
-                                    <a class="dropdown-item" href="login.html">
+                                    <a class="dropdown-item" href="/auth/logout">
                                         <i class="dropdown-icon fe fe-alert-circle"></i> Sign out
                                     </a>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

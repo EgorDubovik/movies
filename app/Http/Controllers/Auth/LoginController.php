@@ -21,4 +21,10 @@ class LoginController extends Controller
             return back()->withErrors("User wasn`t found");
         }
     }
+
+    public function destroy(Request $request){
+        Auth::logout();
+        return redirect("/");
+    }
+
 }

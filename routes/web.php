@@ -13,5 +13,6 @@ Route::prefix("auth")->group(function(){
     Route::post("/register", [RegisterController::class,"store"]);
     Route::get("/login", [LoginController::class,'view']);
     Route::post("/login", [LoginController::class,'login']);
+    Route::get('/logout', [LoginController::class,'destroy']);
 });
 
