@@ -3,11 +3,11 @@
     <div class="app-sidebar">
         <div class="side-header">
             <a class="header-brand1" href="index.html">
-                <img src="../assets/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
-                <img src="../assets/images/brand/logo-1.png" class="header-brand-img toggle-logo"
+                <img src="{{ URL::asset('assets/images/brand/logo.png')}}" class="header-brand-img desktop-logo" alt="logo">
+                <img src="{{ URL::asset('assets/images/brand/logo-1.png')}}" class="header-brand-img toggle-logo"
                      alt="logo">
-                <img src="../assets/images/brand/logo-2.png" class="header-brand-img light-logo" alt="logo">
-                <img src="../assets/images/brand/logo-3.png" class="header-brand-img light-logo1"
+                <img src="{{ URL::asset('assets/images/brand/logo-2.png')}}" class="header-brand-img light-logo" alt="logo">
+                <img src="{{ URL::asset('assets/images/brand/logo-3.png')}}" class="header-brand-img light-logo1"
                      alt="logo">
             </a>
             <!-- LOGO -->
@@ -23,6 +23,14 @@
                             class="side-menu__icon fe fe-home"></i><span
                             class="side-menu__label">Dashboard</span></a>
                 </li>
+                @if(!Auth::check())
+                    <li style="text-align: center; padding-top: 30px">
+                        If you whant this order, ypu need:<br/><br/>
+                        <a href="/auth/login">Login</a>
+                        <br/>or<br/>
+                        <a href="auth/register">Registration</a>
+                    </li>
+                @endif
             </ul>
             <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
                                                            width="24" height="24" viewBox="0 0 24 24">

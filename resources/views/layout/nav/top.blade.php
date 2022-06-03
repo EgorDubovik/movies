@@ -190,12 +190,7 @@
                                 </div>
                             </div>
                             <!-- MESSAGE-BOX -->
-                            <div class="dropdown d-flex header-settings">
-                                <a href="javascript:void(0);" class="nav-link icon"
-                                   data-bs-toggle="sidebar-right" data-target=".sidebar-right">
-                                    <i class="fe fe-align-right"></i>
-                                </a>
-                            </div>
+
                             <!-- SIDE-MENU -->
                             @if(Auth::check())
                             <div class="dropdown d-flex profile-1">
