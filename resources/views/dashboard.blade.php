@@ -5,7 +5,7 @@
 <div class="main-container container-fluid">
     <!-- PAGE-HEADER -->
     <div class="page-header">
-        <h1 class="page-title">Jobs</h1>
+        <h1 class="page-title">Create new order</h1>
         <div>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Apps</a></li>
@@ -16,7 +16,8 @@
     <!-- PAGE-HEADER END -->
     <!-- CONTENT -->
     <div class="row">
-        @include('job.jobs-view')
+        <div class=''><a href="/order/create">Add new order</a> </div>
+        @include('order.order-view')
     </div>
 
 </div>
