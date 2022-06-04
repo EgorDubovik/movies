@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\OrderController;
-Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
+use App\Http\Controllers\DashboardController;
+
+Route::get('/', [DashboardController::class,'view'])->name('dashboard');
 
 Route::prefix("auth")->group(function(){
     Route::get("/register",[RegisterController::class,'create']);
