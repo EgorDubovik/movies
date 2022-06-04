@@ -16,7 +16,11 @@
     <!-- PAGE-HEADER END -->
     <!-- CONTENT -->
     <div class="row">
-        <div class=''><a href="/order/create">Add new order</a> </div>
+        <div class='' style="padding-bottom: 20px;">
+            @can('create', \App\Models\Order::class)
+            <a href="/order/create">Add new order</a>
+            @endcan
+        </div>
         @include('order.order-view')
     </div>
 

@@ -45,4 +45,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    function is_mover(){
+        return $this->is_mover;
+    }
 }

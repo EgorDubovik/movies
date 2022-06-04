@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\OrderController;
 Route::get('/', function () {
     return view('dashboard');
-});
+})->name('dashboard');
 
 Route::prefix("auth")->group(function(){
     Route::get("/register",[RegisterController::class,'create']);
@@ -18,5 +18,6 @@ Route::prefix("auth")->group(function(){
 
 Route::prefix('order')->group(function (){
     Route::get('/create',[OrderController::class,'create']);
+    Route::post('/create',[OrderController::class,'store']);
 });
 
