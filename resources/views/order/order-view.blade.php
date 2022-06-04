@@ -2,7 +2,7 @@
     <script>
         var orders = @json($orders);
     </script>
-    <div class="col-md-12  col-xl-6" id="orders-line">
+    <div id="orders-line">
 
     </div>
 
@@ -24,13 +24,14 @@
                                 '</div>'+
                                 '<div class="col-10">'+
                                     '<div>'+
-                                        '<span style="color: #9d9d9d">From:</span> <a href="#" style="font-weight: bold"> '+order.address_from+' '+order.zip_from+'</a>'+
+                                        '<span style="color: #9d9d9d">From:</span> <span class="address-card"> '+order.address_from+' '+order.zip_from+'</span>'+
                                     '</div>'+
                                     '<div style="margin-top: 10px">'+
-                                        '<span style="color: #9d9d9d">To</span>: <a href="#" style="font-weight: bold"> '+order.address_from+' '+order.zip_to+'</a>'+
+                                        '<span style="color: #9d9d9d;margin-right: 18px;">To:</span> <span class="address-card"> '+order.address_from+' '+order.zip_to+'</span>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
+                            '<a href="/order/'+order.id+'" class="stretched-link"></a>'+
                         '</div>'+
                     '</div>'
                 )

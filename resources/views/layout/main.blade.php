@@ -26,6 +26,7 @@
     <link href="{{ URL::asset('assets/css/dark-style.css')}}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/css/transparent-style.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('assets/css/skin-modes.css')}}" rel="stylesheet" />
+    <link href="{{ URL::asset('assets/css/mystyle.css')}}" rel="stylesheet" />
 
     <!--- FONT-ICONS CSS -->
     <link href="../assets/css/icons.css" rel="stylesheet" />
