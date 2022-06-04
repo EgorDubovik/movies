@@ -21,4 +21,8 @@ class Order extends Model
         'date_recive',
         ];
 
+    public function company(){
+        return $this->belongsTo(User::class,'user_id','id')->select('company_name','id','email');
+    }
+
 }
