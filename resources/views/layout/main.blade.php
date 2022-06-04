@@ -29,7 +29,7 @@
     <link href="{{ URL::asset('assets/css/mystyle.css')}}" rel="stylesheet" />
 
     <!--- FONT-ICONS CSS -->
-    <link href="../assets/css/icons.css" rel="stylesheet" />
+    <link href="{{ URL::asset('assets/css/icons.css')}}" rel="stylesheet" />
 
     <!-- COLOR SKIN CSS -->
     <link id="theme" rel="stylesheet" type="text/css" media="all" href="{{ URL::asset('assets/colors/color1.css')}}" />

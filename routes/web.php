@@ -21,5 +21,7 @@ Route::prefix('order')->group(function (){
     Route::post('/create',[OrderController::class,'store']);
     Route::get('/{id}',[OrderController::class,'view']);
     Route::delete('/destroy/{order}',[OrderController::class,'destroy']);
+    Route::get('/edit/{order}/edit', [OrderController::class, 'edit']);
+    Route::put('/{order}', [OrderController::class, 'update']);
 });
 

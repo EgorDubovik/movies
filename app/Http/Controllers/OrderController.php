@@ -44,8 +44,17 @@ class OrderController extends Controller
     }
 
     public function destroy(Order $order){
-
         $order->delete();
         return back();
+    }
+
+    public function edit(Order $order){
+        return view('order.order-edit')->with('order',$order);
+    }
+
+    public function update(OrderRequest $request,Order $order){
+
+        $order->update($request->all());
+        return redirect('/order/'.$order->id)->with('successful', 'You order has been update successful');
     }
 }
