@@ -13,6 +13,7 @@
                     '<div class="card">'+
                         '<div class="card-status bg-green br-te-7 br-ts-7"></div>'+
                         '<div class="card-body">'+
+                            '<div class="row">Order # '+order.id+'</div> '+
                             '<div class="row">'+
                                 '<div class="created-card">Created by: '+order.company.company_name+'</div>'+
                                 '<div class="col-2">'+

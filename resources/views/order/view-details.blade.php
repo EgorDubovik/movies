@@ -107,6 +107,18 @@
                                 <p class="text-muted mb-0">{{($order->date_receive) ? $order->date_receive : "No date"}}</p>
                             </div>
                         </div>
+                        <div class="row" style="padding-top: 20px; text-align: right">
+                            <div class="btn-list">
+                                @can('delete', $order)
+                                <form method="post" action="/order/destroy/1" onsubmit="confirm_on_delete(this);return false;">
+                                    @csrf
+                                    @method('delete')
+                                    <a href="/order/update/{{$order->id}}" class="btn btn-warning" style="margin-right: 20px">Update</a>
+                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                </form>
+                                @endcan
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,7 +126,27 @@
         </div>
 
     </div>
+    <script>
+        function confirm_on_delete(form){
+            swal({
+                    title: "Are you sure?",
+                    text: "Your will not be able to recover this order file!",
+                    type: "warning",
 
+                    confirmButtonText: "Yes, delete it!",
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6e7d88',
+                },
+                function(isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+                    } else {
+                        swal("Cancelled", "Your imaginary file is safe :)", "error");
+                    }
+                });
+        }
+    </script>
 @stop
 
 @section('scripts')
@@ -122,5 +154,9 @@
     <script src="{{ URL::asset('assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js')}}"></script>
     <script src="{{ URL::asset('assets/plugins/jvectormap/jquery-jvectormap-us-aea-en.js')}}"></script>
     <script src="{{ URL::asset('assets/js/jvectormap.js')}}"></script>
+
+    <!-- SWEET-ALERT JS -->
+    <script src="{{ URL::asset('assets/plugins/sweet-alert/sweetalert.min.js')}}"></script>
+    <script src="{{ URL::asset('assets/js/sweet-alert.js')}}"></script>
 
 @stop

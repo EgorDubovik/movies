@@ -20,5 +20,6 @@ Route::prefix('order')->group(function (){
     Route::get('/create',[OrderController::class,'create']);
     Route::post('/create',[OrderController::class,'store']);
     Route::get('/{id}',[OrderController::class,'view']);
+    Route::delete('/destroy/{order}',[OrderController::class,'destroy']);
 });
 

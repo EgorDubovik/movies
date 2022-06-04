@@ -42,4 +42,10 @@ class OrderController extends Controller
         $order = Order::find($request->id);
         return view('order.view-details')->with('order',$order);
     }
+
+    public function destroy(Order $order){
+
+        $order->delete();
+        return back();
+    }
 }
