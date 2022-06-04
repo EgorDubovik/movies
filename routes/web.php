@@ -19,5 +19,6 @@ Route::prefix("auth")->group(function(){
 Route::prefix('order')->group(function (){
     Route::get('/create',[OrderController::class,'create']);
     Route::post('/create',[OrderController::class,'store']);
+    Route::get('/{id}',[OrderController::class,'view']);
 });
 

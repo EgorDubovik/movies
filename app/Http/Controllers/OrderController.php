@@ -36,4 +36,10 @@ class OrderController extends Controller
 
         return redirect()->back()->with('successful', 'Your order created successful');
     }
+
+    public function view(Request $request){
+
+        $order = Order::find($request->id);
+        return view('order.view-details')->with('order',$order);
+    }
 }

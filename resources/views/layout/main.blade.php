@@ -128,10 +128,6 @@
 <script src="{{ URL::asset('assets/plugins/flot/chart.flot.sampledata.js')}}"></script>
 <script src="{{ URL::asset('assets/plugins/flot/dashboard.sampledata.js')}}"></script>
 
-<!-- INTERNAL Vector js -->
-<script src="{{ URL::asset('assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js')}}"></script>
-<script src="{{ URL::asset('assets/plugins/')}}jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-
 <!-- SIDE-MENU JS-->
 <script src="{{ URL::asset('assets/plugins/sidemenu/sidemenu.js')}}"></script>
 
@@ -147,6 +143,10 @@
 
 <!-- CUSTOM JS -->
 <script src="{{ URL::asset('assets/js/custom.js')}}"></script>
+
+<!-- additional script-->
+@yield('scripts')
+<!-- additional script END -->
 
 </body>
 
