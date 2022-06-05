@@ -25,7 +25,7 @@
                 @endcan
 
             </div>
-            @include('order.order-view')
+            @include('order.order-view',['status'=>'all'])
         </div>
 
         <div class="col-md-12  col-xl-6" id="orders-line">

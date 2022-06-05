@@ -27,7 +27,7 @@
                 @if(Auth::check())
                     <li class="slide">
                         <a class="side-menu__item has-link" data-bs-toggle="slide" href="/order/my/orders"><i
-                                class="side-menu__icon fe fe-home"></i><span
+                                class="side-menu__icon fa fa-list"></i><span
                                 class="side-menu__label">My orders</span></a>
                     </li>
                 @endif
