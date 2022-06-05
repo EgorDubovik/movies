@@ -119,7 +119,7 @@
                         <div class="row" style="padding-top: 20px; text-align: right">
                             <div class="btn-list">
                                 @can('delete', $order)
-                                <form method="post" action="/order/destroy/1" onsubmit="confirm_on_delete(this);return false;">
+                                <form method="post" action="/order/destroy/{{$order->id}}" onsubmit="confirm_on_delete(this);return false;">
                                     @csrf
                                     @method('delete')
                                     <a href="/order/edit/{{$order->id}}/edit" class="btn btn-warning" style="margin-right: 20px">Update</a>

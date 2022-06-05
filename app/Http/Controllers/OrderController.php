@@ -31,7 +31,7 @@ class OrderController extends Controller
             'volume' => $request->volume,
             'price' => $request->price,
             'date_send' => $request->date_send,
-            'date_recive'=> $request->date_receive,
+            'date_receive'=> $request->date_receive,
         ]);
 
         return redirect()->back()->with('successful', 'Your order created successful');
@@ -45,7 +45,7 @@ class OrderController extends Controller
 
     public function destroy(Order $order){
         $order->delete();
-        return back();
+        return redirect('/');
     }
 
     public function edit(Order $order){
@@ -56,5 +56,10 @@ class OrderController extends Controller
 
         $order->update($request->all());
         return redirect('/order/'.$order->id)->with('successful', 'You order has been update successful');
+    }
+
+    public function my_orders(){
+        $orders = Order::where('user_id',Auth::user()->id)->get()->load('company');
+        return view('order.my-orders')->with('orders',$orders);
     }
 }

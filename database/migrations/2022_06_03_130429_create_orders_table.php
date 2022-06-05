@@ -24,7 +24,8 @@ return new class extends Migration
             $table->float('volume');
             $table->float('price')->nullable();
             $table->date('date_send')->nullable();
-            $table->date('date_recive')->nullable();
+            $table->date('date_receive')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

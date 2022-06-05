@@ -8,15 +8,17 @@
 
     <script>
         window.onload = function(){
+            var status = ['New', 'Pending', 'Done'];
+            var classes = ['green', 'blue', 'red'];
             orders.forEach(function (order) {
                 $('#orders-line').append(
                     '<div class="card">'+
-                        '<div class="card-status bg-green br-te-7 br-ts-7"></div>'+
+                        '<div class="card-status bg-'+classes[order.status]+' br-te-7 br-ts-7" style=""></div>'+
                         '<div class="card-body">'+
                             '<div class="row">Order # '+order.id+'</div> '+
                             '<div class="row">'+
-                                '<div class="created-card">Created by: '+order.company.company_name+'</div>'+
-                                '<div class="col-2">'+
+                                '<div class="created-card">Status: '+status[order.status]+'</div>'+
+                                '<div class="col-lg-2 col-md-12">'+
                                     '<div>'+
                                         '<strong style="font-size: 18px">'+order.volume+'</strong> cb.ft.'+
                                     '</div>'+
@@ -24,7 +26,7 @@
                                         '<strong style="font-size: 18px">$'+order.price+' </strong> per. cb'+
                                     '</div>'+
                                 '</div>'+
-                                '<div class="col-10">'+
+                                '<div class="col-lg-10 col-md-12">'+
                                     '<div>'+
                                         '<span style="color: #9d9d9d">From:</span> <span class="address-card"> '+order.address_from+' '+order.zip_from+'</span>'+
                                     '</div>'+

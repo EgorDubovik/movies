@@ -23,6 +23,14 @@
                             class="side-menu__icon fe fe-home"></i><span
                             class="side-menu__label">Dashboard</span></a>
                 </li>
+
+                @if(Auth::check())
+                    <li class="slide">
+                        <a class="side-menu__item has-link" data-bs-toggle="slide" href="/order/my/orders"><i
+                                class="side-menu__icon fe fe-home"></i><span
+                                class="side-menu__label">My orders</span></a>
+                    </li>
+                @endif
                 @if(!Auth::check())
                     <li style="text-align: center; padding-top: 30px">
                         If you whant this order, ypu need:<br/><br/>

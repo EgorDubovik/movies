@@ -23,5 +23,6 @@ Route::prefix('order')->group(function (){
     Route::delete('/destroy/{order}',[OrderController::class,'destroy']);
     Route::get('/edit/{order}/edit', [OrderController::class, 'edit']);
     Route::put('/{order}', [OrderController::class, 'update']);
+    Route::get('/my/orders', [OrderController::class,'my_orders'])->middleware('auth');
 });
 
