@@ -45,6 +45,11 @@
                                     <br/>or<br/>
                                     <a href="auth/register">Registration</a>
                                 </div>
+                            @else
+                                @can('send-application',$order)
+                                    <a href="/order/application/send/{{$order->id}}" class="btn btn-success">Submit your application</a>
+                                @endcan
+
                             @endif
                         </div>
 
@@ -135,6 +140,7 @@
         </div>
 
     </div>
+    @can('delete', $order)
     <script>
         function confirm_on_delete(form){
             swal({
@@ -156,6 +162,7 @@
                 });
         }
     </script>
+    @endcan
 @stop
 
 @section('scripts')

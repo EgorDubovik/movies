@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Application;
 use App\Models\Order;
+use App\Models\User;
 use App\Policies\OrderPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -27,6 +29,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('send-application', function (User $user, Order $order){
+            $application = Application::where(['order_id'=>$order->id,'user_id'=>$user->id])->first();
+            if($application || !$user->is_driver || $order->user_id == $user->id)
+                return false;
+            else
+                return true;
+        });
     }
 }

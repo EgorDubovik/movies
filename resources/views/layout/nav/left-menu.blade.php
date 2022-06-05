@@ -30,6 +30,13 @@
                                 class="side-menu__icon fa fa-list"></i><span
                                 class="side-menu__label">My orders</span></a>
                     </li>
+
+                    <li class="slide">
+                        <a class="side-menu__item has-link" data-bs-toggle="slide" href="/drivers"><i
+                                class="side-menu__icon fa fa-truck"></i><span
+                                class="side-menu__label">Drivers</span></a>
+                    </li>
+
                 @endif
                 @if(!Auth::check())
                     <li style="text-align: center; padding-top: 30px">

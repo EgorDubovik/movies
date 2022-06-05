@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
+use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
@@ -61,5 +62,18 @@ class OrderController extends Controller
     public function my_orders(){
         $orders = Order::where('user_id',Auth::user()->id)->get()->load('company');
         return view('order.my-orders')->with('orders',$orders);
+    }
+
+    public function submit_application(Request $request, Order $order){
+
+        $this->authorize('send-application',$order);
+
+
+        Application::create([
+            'order_id' => $order->id,
+            'user_id' => Auth::user()->id
+        ]);
+        return "true";
+        //return back()->with('successful','Your application has been send successful');
     }
 }
