@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
 use App\Models\Application;
+use App\Models\Deal;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
@@ -90,8 +91,11 @@ class OrderController extends Controller
         $application->update([
             'confirm'=>1
         ]);
-        // Create deal
-        //   TO Do
+        Deal::create([
+            'order_id'=>$application->order_id,
+            'mover_id'=>Auth::user()->id,
+            'driver_id'=>$application->user_id,
+        ]);
 
         $application->order->update([
            'status'=>Order::IS_PENDING
