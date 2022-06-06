@@ -40,5 +40,9 @@ class Order extends Model
         return $this->hasOne(Application::class)->where('confirm',1);
     }
 
+    public function deal(){
+        return $this->hasOne(Deal::class,'order_id');
+    }
+
 
 }

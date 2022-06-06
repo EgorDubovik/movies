@@ -48,6 +48,11 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('view-deal',function (User $user, Deal $deal){
             return ($user->id === $deal->mover_id || $user->id === $deal->driver_id);
         });
-
+        Gate::define('update-deal-customer',function (User $user, Deal $deal){
+           return  $user->id === $deal->mover_id;
+        });
+        Gate::define('update-deal-driver',function (User $user, Deal $deal){
+            return  $user->id === $deal->driver_id;
+        });
     }
 }

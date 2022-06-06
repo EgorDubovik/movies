@@ -27,4 +27,16 @@ class Deal extends Model
         'customer_fio',
         "status",
     ];
+
+    public function mover(){
+        return $this->hasOne(User::class,'id','mover_id');
+    }
+
+    public function driver(){
+        return $this->hasOne(User::class,'id','driver_id');
+    }
+
+    public function order(){
+        return $this->belongsTo(Order::class);
+    }
 }

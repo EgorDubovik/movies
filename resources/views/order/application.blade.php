@@ -29,6 +29,7 @@
     @else
         You choose company for this job
         {{$order->confirmed_application->user->company_name}}
+        <br> <a href="/deal/{{$order->deal->id}}">Hee you deal with</a>
     @endif
 @else
     @can('send-application',$order)
@@ -39,7 +40,7 @@
 
         @if($order->confirmed_application)
             @if($order->confirmed_application->user_id == Auth::user()->id)
-                They choose you. This is yours DEAl
+                They choose you. <br> This is yours <a href="/deal/{{$order->deal->id}}">DEAl</a>
             @else
                 Unfortunately they hired another company
             @endif
