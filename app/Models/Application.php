@@ -12,5 +12,15 @@ class Application extends Model
         'order_id',
         'user_id',
         'confirm',
+        'created_at'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function order(){
+        return $this->belongsTo(Order::class);
+    }
+
 }

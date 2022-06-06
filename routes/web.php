@@ -19,11 +19,13 @@ Route::prefix("auth")->group(function(){
 Route::prefix('order')->group(function (){
     Route::get('/create',[OrderController::class,'create']);
     Route::post('/create',[OrderController::class,'store']);
-    Route::get('/{id}',[OrderController::class,'view']);
+    Route::get('/{id}',[OrderController::class,'view'])->name('order.view');
     Route::delete('/destroy/{order}',[OrderController::class,'destroy']);
     Route::get('/edit/{order}/edit', [OrderController::class, 'edit']);
     Route::put('/{order}', [OrderController::class, 'update']);
     Route::get('/my/orders', [OrderController::class,'my_orders'])->middleware('auth');
     Route::get('/application/send/{order}',[OrderController::class,'submit_application']);
+    Route::delete('/application/destroy/{order}',[OrderController::class,'destroy_application']);
+    Route::get('/application/confirm/{application}',[OrderController::class,'confirm_application']);
 });
 

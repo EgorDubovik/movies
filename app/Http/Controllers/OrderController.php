@@ -68,12 +68,35 @@ class OrderController extends Controller
 
         $this->authorize('send-application',$order);
 
-
         Application::create([
             'order_id' => $order->id,
             'user_id' => Auth::user()->id
         ]);
-        return "true";
-        //return back()->with('successful','Your application has been send successful');
+        return redirect()->route('order.view',['id'=>$order->id]);
+    }
+
+    public function destroy_application(Request $request, Order $order){
+        $application = Application::where(['user_id'=>Auth::user()->id,'order_id'=>$order->id,'confirm'=>0])->first();
+        if($application){
+            $application->delete();
+            return back();
+        } else {
+            abort(403);
+        }
+    }
+
+    public function confirm_application(Application $application){
+        $this->authorize('confirm-application',$application);
+        $application->update([
+            'confirm'=>1
+        ]);
+        // Create deal
+        //   TO Do
+
+        $application->order->update([
+           'status'=>Order::IS_PENDING
+        ]);
+
+        return back();
     }
 }

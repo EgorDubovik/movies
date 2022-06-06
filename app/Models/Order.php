@@ -32,4 +32,13 @@ class Order extends Model
         return $this->belongsTo(User::class,'user_id','id')->select('company_name','id','email');
     }
 
+    public function applications(){
+        return $this->hasMany(Application::class);
+    }
+
+    public function confirmed_application(){
+        return $this->hasOne(Application::class)->where('confirm',1);
+    }
+
+
 }
