@@ -32,12 +32,15 @@
                                 <a href="/deal/{{$deal->id}}/update/status/driver/{{\App\Models\Deal::DELIVERED}}"
                                    class="btn btn-success ml-5">Delivered</a>
                                 @if($deal->status < \App\Models\Deal::DELIVERED)
-                                    <a href="#" class="btn btn-danger ml-5">Cancel it</a>
+                                    <a href="/deal/{{$deal->id}}/update/status/driver/{{\App\Models\Deal::CANCEL}}" class="btn btn-danger ml-5">Cancel it</a>
                                 @endif
                             @endcan
                             @if(Gate::check('change-deal-status-mover',$deal))
                                 @if($deal->status < \App\Models\Deal::DONE)
                                     <a href="/deal/{{$deal->id}}/update/status/mover/{{\App\Models\Deal::DONE}}" class="btn btn-success ml-5">Done</a>
+                                @elseif($deal->status == \App\Models\Deal::CANCEL)
+                                        <span style="font-size: 12px;">Driver cancel the deal. You can close this deal and run your order again</span>
+                                        <a href="/deal/{{$deal->id}}/close" class="btn btn-success">Yes, do it</a>
                                 @endif
                             @else
                                 @if(Auth::user()->is_mover)
@@ -45,7 +48,6 @@
                                         style="font-size: 12px;">You can change status only when driver change the status to "Delivered"</span>
                                 @endif
                             @endif
-
                         </div>
                     </div>
                 </div>

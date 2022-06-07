@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DealCustomerUpdateRequest;
+use App\Models\Application;
 use App\Models\Deal;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class DealController extends Controller
@@ -59,10 +61,31 @@ class DealController extends Controller
             $deal->update([
                 'status'=> $status
             ]);
+            $deal->order->update([
+                'status' => Order::IS_DONE
+            ]);
+
             return back();
         } else {
             abort(403);
         }
+    }
 
+    public function close(Deal $deal){
+
+        $order = $deal->order;
+
+        // Change order status for new
+        $order->update([
+           'status' => Order::IS_NEW
+        ]);
+
+        // Remove application with this driver_id
+        Application::find($order->confirmed_application->id)->delete();
+
+        // Remove deal
+        $deal->delete();
+
+        return redirect()->route('order.view',['id'=>$order->id]);
     }
 }
