@@ -9,12 +9,11 @@ class Deal extends Model
 {
 
     public const ISNEW = 0;
-    public const PENDING = 1;
-    public const IN_PROGRESS = 2;
+    public const IN_PROGRESS = 1;
+    public const DELIVERED = 2;
     public const DONE = 3;
-    public const CLOSE = 4;
-    public const CANCEL = 5;
-
+    public const CANCEL = 4;
+    public const STATUS = ['New','In progress','Delivered','Done','Canceled'];
     use HasFactory;
 
     protected $fillable = [

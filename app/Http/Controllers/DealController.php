@@ -38,6 +38,31 @@ class DealController extends Controller
         ]);
 
         return back()->with('successful','Customer information has been update');
+    }
+
+    public function update_status_driver(Deal $deal, $status){
+        $this->authorize('change-deal-status-driver',$deal);
+        if(in_array($status,array(Deal::IN_PROGRESS, Deal::DELIVERED, Deal::CANCEL))){
+            $deal->update([
+                'status'=> $status
+            ]);
+            return back();
+        } else {
+            abort(403);
+        }
+
+    }
+
+    public function update_status_mover(Deal $deal, $status){
+        $this->authorize('change-deal-status-mover',$deal);
+        if(in_array($status,array(Deal::DONE))){
+            $deal->update([
+                'status'=> $status
+            ]);
+            return back();
+        } else {
+            abort(403);
+        }
 
     }
 }

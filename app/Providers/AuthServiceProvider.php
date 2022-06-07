@@ -54,5 +54,17 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('update-deal-driver',function (User $user, Deal $deal){
             return  $user->id === $deal->driver_id;
         });
+
+        Gate::define('change-deal-status-driver',function (User $user, Deal $deal){
+           if ($user->is_driver && $deal->driver_id == $user->id && ($deal->status==Deal::ISNEW || $deal->status==Deal::IN_PROGRESS))
+               return true;
+           return false;
+        });
+
+        Gate::define('change-deal-status-mover',function (User $user, Deal $deal){
+            if ($user->is_mover && $deal->mover_id == $user->id && $deal->status >= Deal::DELIVERED)
+                return true;
+            return false;
+        });
     }
 }

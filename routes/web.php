@@ -34,5 +34,8 @@ Route::prefix('deal')->group(function (){
     Route::get('/{deal}', [DealController::class,'view']);
     Route::post('/{deal}/update/customer',[DealController::class,'update_by_mover']);
     Route::post('/{deal}/update/driver',[DealController::class,'update_by_driver']);
+    Route::get('/{deal}/update/status/driver/{status}',[DealController::class,'update_status_driver']);
+    Route::get('/{deal}/update/status/mover/{status}',[DealController::class,'update_status_mover']);
+
 });
 

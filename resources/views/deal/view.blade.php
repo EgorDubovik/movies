@@ -5,13 +5,50 @@
     <div class="main-container container-fluid">
         <!-- PAGE-HEADER -->
         <div class="page-header">
-            <h1 class="page-title">Deal between "<a href="#">{{$deal->mover->company_name}}</a>" and "<a href="#">{{$deal->driver->company_name}}</a>"</h1>
+            <h1 class="page-title">Deal between "<a href="#">{{$deal->mover->company_name}}</a>" and "<a
+                    href="#">{{$deal->driver->company_name}}</a>"</h1>
             <div>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Apps</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Deal
                     </li>
                 </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-2" style="font-size: 18px;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span style="color: #a2a2a2">Status:</span>
+                            <span>{{\App\Models\Deal::STATUS[$deal->status]}}</span>
+                        </div>
+                        <div class="col-md-6">
+                            @can('change-deal-status-driver',$deal)
+                                @if($deal->status < \App\Models\Deal::IN_PROGRESS)
+                                    <a href="/deal/{{$deal->id}}/update/status/driver/{{\App\Models\Deal::IN_PROGRESS}}"
+                                       class="btn btn-success ml-5">I am ready to go</a>
+                                @endif
+                                <a href="/deal/{{$deal->id}}/update/status/driver/{{\App\Models\Deal::DELIVERED}}"
+                                   class="btn btn-success ml-5">Delivered</a>
+                                @if($deal->status < \App\Models\Deal::DELIVERED)
+                                    <a href="#" class="btn btn-danger ml-5">Cancel it</a>
+                                @endif
+                            @endcan
+                            @if(Gate::check('change-deal-status-mover',$deal))
+                                @if($deal->status < \App\Models\Deal::DONE)
+                                    <a href="/deal/{{$deal->id}}/update/status/mover/{{\App\Models\Deal::DONE}}" class="btn btn-success ml-5">Done</a>
+                                @endif
+                            @else
+                                @if(Auth::user()->is_mover)
+                                    <button href="#" class="btn btn-success disable ml-5">Done</button> <span
+                                        style="font-size: 12px;">You can change status only when driver change the status to "Delivered"</span>
+                                @endif
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- PAGE-HEADER END -->
@@ -30,13 +67,17 @@
                                 <div class="row mb-4">
                                     <label for="inputName" class="col-md-3 form-label">Customer phone number:</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="customer_phone" value="{{$deal->customer_phone}}" class="form-control" id="inputName" placeholder="Customer phone number">
+                                        <input type="text" name="customer_phone" value="{{$deal->customer_phone}}"
+                                               class="form-control" id="inputName" placeholder="Customer phone number">
                                     </div>
                                 </div>
                                 <div class="row mb-4">
-                                    <label for="inputName" class="col-md-3 form-label">Customer first and last Name:</label>
+                                    <label for="inputName" class="col-md-3 form-label">Customer first and last
+                                        Name:</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="customer_fio" value="{{$deal->customer_fio}}" class="form-control" id="inputName" placeholder="Customer first and last Name:">
+                                        <input type="text" name="customer_fio" value="{{$deal->customer_fio}}"
+                                               class="form-control" id="inputName"
+                                               placeholder="Customer first and last Name:">
                                     </div>
                                 </div>
                                 <div class="mb-0 mt-4 row justify-content-end">
@@ -72,13 +113,17 @@
                                 <div class="row mb-4">
                                     <label for="inputName" class="col-md-3 form-label">Driver phone number:</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="driver_phone" value="{{$deal->driver_phone}}" class="form-control" id="inputName" placeholder="Driver phone number">
+                                        <input type="text" name="driver_phone" value="{{$deal->driver_phone}}"
+                                               class="form-control" id="inputName" placeholder="Driver phone number">
                                     </div>
                                 </div>
                                 <div class="row mb-4">
-                                    <label for="inputName" class="col-md-3 form-label">Customer first and last Name:</label>
+                                    <label for="inputName" class="col-md-3 form-label">Customer first and last
+                                        Name:</label>
                                     <div class="col-md-9">
-                                        <input type="text" name="driver_fio" value="{{$deal->driver_fio}}" class="form-control" id="inputName" placeholder="Driver first and last Name:">
+                                        <input type="text" name="driver_fio" value="{{$deal->driver_fio}}"
+                                               class="form-control" id="inputName"
+                                               placeholder="Driver first and last Name:">
                                     </div>
                                 </div>
                                 <div class="mb-0 mt-4 row justify-content-end">
@@ -117,7 +162,8 @@
                                             <p class="mb-0">Addres from:</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{$deal->order->address_from}}, {{$deal->order->zip_from}}</p>
+                                            <p class="text-muted mb-0">{{$deal->order->address_from}}
+                                                , {{$deal->order->zip_from}}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -126,7 +172,8 @@
                                             <p class="mb-0">Addres to:</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">{{$deal->order->address_to}}, {{$deal->order->zip_to}}</p>
+                                            <p class="text-muted mb-0">{{$deal->order->address_to}}
+                                                , {{$deal->order->zip_to}}</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -137,7 +184,7 @@
                                                     <p class="mb-0">Volume :</p>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                    <p class="text-muted mb-0">{{$deal->order->volume}}  cb. ft.</p>
+                                                    <p class="text-muted mb-0">{{$deal->order->volume}} cb. ft.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -158,7 +205,9 @@
                                             <p class="mb-0">Created by:</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><a href="/company/{{$deal->order->company->company_id}}"> {{$deal->order->company->company_name}}</a></p>
+                                            <p class="text-muted mb-0"><a
+                                                    href="/company/{{$deal->order->company->company_id}}"> {{$deal->order->company->company_name}}</a>
+                                            </p>
                                         </div>
                                     </div>
                                     <hr>
