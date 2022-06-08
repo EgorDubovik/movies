@@ -22,7 +22,9 @@
                     <div class="card">
                         <div class="card-header"><h3 class="card-title">USA Map</h3></div>
                         <div class="card-body">
-                            <div id="vmap9" class="stateh h-300"></div>
+{{--                            <div id="vmap9" class="stateh h-300"></div>--}}
+
+                            <div id="map" style="height: 400px;"></div>
                         </div>
                     </div>
                     <div class="card">
@@ -163,4 +165,123 @@
     <script src="{{ URL::asset('assets/plugins/sweet-alert/sweetalert.min.js')}}"></script>
     <script src="{{ URL::asset('assets/js/sweet-alert.js')}}"></script>
 
+    <!-- GOOGEL MAP -->
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ENV('GOOGLE_MAP_API')}}&callback=initMap&v=weekly" defer></script>
+    <script>
+
+        $(document).ready(function(){
+            var directionsService = new google.maps.DirectionsService();
+            var map;
+
+            function initialize() {
+
+                var center = new google.maps.LatLng(0, 0);
+                var myOptions = {
+                    zoom: 7,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    center: center
+                }
+
+                map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+                var start = "Zurich, Switzerland";
+                var end = "Bern, Switzerland";
+                var method = 'DRIVING';
+                var request = {
+                    origin: start,
+                    destination: end,
+                    travelMode: google.maps.DirectionsTravelMode[method]
+                };
+
+                var bounds = new google.maps.LatLngBounds();
+
+                directionsService.route(request, function(response, status) {
+
+                    // Check response status
+                    if (status == google.maps.DirectionsStatus.OK) {
+
+                        // Get the route
+                        var route = response.routes[0];
+
+                        // Create our own Polyline for this step
+                        var line = new google.maps.Polyline({
+                            path: route.overview_path,
+                            strokeColor: 'red',
+                            strokeWeight: 3,
+                            map: map,
+                        });
+
+                        var marker = new google.maps.Marker({
+                            position: start,
+                            map: map
+                        });
+
+                        // Extend our bounds object with each Polyline point
+                        for (var i = 0; i < route.overview_path.length; i++) {
+
+                            bounds.extend(route.overview_path[i]);
+                        }
+                        map.fitBounds(bounds);
+
+
+
+                        //
+                        // var points = line.GetPointsAtDistance(10000);
+                        //
+                        // points.forEach(function(point) {
+                        //
+                        //     var marker = new google.maps.Marker({
+                        //         position: point,
+                        //         map: map
+                        //     });
+                        // });
+                    }
+                });
+
+
+                // Code courtesy of Larry Ross http://www.geocodezip.com/scripts/v3_epoly.js
+                google.maps.LatLng.prototype.distanceFrom = function(newLatLng) {
+                    var EarthRadiusMeters = 6378137.0; // meters
+                    var lat1 = this.lat();
+                    var lon1 = this.lng();
+                    var lat2 = newLatLng.lat();
+                    var lon2 = newLatLng.lng();
+                    var dLat = (lat2 - lat1) * Math.PI / 180;
+                    var dLon = (lon2 - lon1) * Math.PI / 180;
+                    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                    var d = EarthRadiusMeters * c;
+                    return d;
+                }
+
+                google.maps.Polyline.prototype.GetPointsAtDistance = function(metres) {
+                    var next = metres;
+                    var points = [];
+                    // some awkward special cases
+                    if (metres <= 0) return points;
+                    var dist = 0;
+                    var olddist = 0;
+                    for (var i = 1;
+                         (i < this.getPath().getLength()); i++) {
+                        olddist = dist;
+                        dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
+                        while (dist > next) {
+                            var p1 = this.getPath().getAt(i - 1);
+                            var p2 = this.getPath().getAt(i);
+                            var m = (next - olddist) / (dist - olddist);
+                            points.push(new google.maps.LatLng(p1.lat() + (p2.lat() - p1.lat()) * m, p1.lng() + (p2.lng() - p1.lng()) * m));
+                            next += metres;
+                        }
+                    }
+                    return points;
+                }
+            }
+
+            initialize();
+
+        })
+
+    </script>
 @stop
