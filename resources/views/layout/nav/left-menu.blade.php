@@ -35,7 +35,7 @@
                     @if(Auth::user()->is_driver)
                         <li class="slide">
                             <a class="side-menu__item has-link" data-bs-toggle="slide" href="/application/my/applications"><i
-                                    class="side-menu__icon fa fa-list"></i><span
+                                    class="side-menu__icon fa fa-address-card-o"></i><span
                                     class="side-menu__label">My applications</span></a>
                         </li>
                     @endif

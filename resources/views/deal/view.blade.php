@@ -43,7 +43,7 @@
                                         <a href="/deal/{{$deal->id}}/close" class="btn btn-success">Yes, do it</a>
                                 @endif
                             @else
-                                @if(Auth::user()->is_mover)
+                                @if(Auth::user()->is_mover && Auth::user()->id == $deal->mover_id)
                                     <button href="#" class="btn btn-success disable ml-5">Done</button> <span
                                         style="font-size: 12px;">You can change status only when driver change the status to "Delivered"</span>
                                 @endif
