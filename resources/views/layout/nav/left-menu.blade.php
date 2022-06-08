@@ -25,12 +25,20 @@
                 </li>
 
                 @if(Auth::check())
-                    <li class="slide">
-                        <a class="side-menu__item has-link" data-bs-toggle="slide" href="/order/my/orders"><i
-                                class="side-menu__icon fa fa-list"></i><span
-                                class="side-menu__label">My orders</span></a>
-                    </li>
-
+                    @if(Auth::user()->is_mover)
+                        <li class="slide">
+                            <a class="side-menu__item has-link" data-bs-toggle="slide" href="/order/my/orders"><i
+                                    class="side-menu__icon fa fa-list"></i><span
+                                    class="side-menu__label">My orders</span></a>
+                        </li>
+                    @endif
+                    @if(Auth::user()->is_driver)
+                        <li class="slide">
+                            <a class="side-menu__item has-link" data-bs-toggle="slide" href="/application/my/applications"><i
+                                    class="side-menu__icon fa fa-list"></i><span
+                                    class="side-menu__label">My applications</span></a>
+                        </li>
+                    @endif
                     <li class="slide">
                         <a class="side-menu__item has-link" data-bs-toggle="slide" href="/drivers"><i
                                 class="side-menu__icon fa fa-truck"></i><span

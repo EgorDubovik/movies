@@ -63,6 +63,17 @@ class OrderController extends Controller
 
     public function update(OrderRequest $request,Order $order){
 
+        if($request->address_from != $order->address_from){
+            $coordination_from = $this->getcoordination($request->address_from.' '.$request->zip_from);
+            $request->request->add(['lat_from' => $coordination_from[1]]);
+            $request->request->add(['long_from' => $coordination_from[2]]);
+        }
+        if($request->address_to != $order->address_to){
+            $coordination_to = $this->getcoordination($request->address_to.' '.$request->zip_to);
+            $request->request->add(['lat_to' => $coordination_to[1]]);
+            $request->request->add(['long_to' => $coordination_to[2]]);
+        }
+
         $order->update($request->all());
         return redirect('/order/'.$order->id)->with('successful', 'You order has been update successful');
     }

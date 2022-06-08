@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeed extends Seeder
 {
@@ -15,7 +16,7 @@ class UserSeed extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'Any company name',
+            'company_name' => 'Any company name',
             'email' => 'test@example.com',
             'is_driver' => '1',
             'is_mover' => '0',
@@ -25,7 +26,7 @@ class UserSeed extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'One more company name',
+            'company_name' => 'One more company name',
             'email' => 'test2@example.com',
             'is_driver' => '1',
             'is_mover' => '1',
@@ -36,7 +37,7 @@ class UserSeed extends Seeder
 
 
         DB::table('users')->insert([
-            'name' => 'I have couple more name',
+            'company_name' => 'I have couple more name',
             'email' => 'test3@example.com',
             'is_driver' => '0',
             'is_mover' => '1',
@@ -47,7 +48,7 @@ class UserSeed extends Seeder
 
 
         DB::table('users')->insert([
-            'name' => 'Belarus give',
+            'company_name' => 'Belarus give',
             'email' => 'test4@example.com',
             'is_driver' => '1',
             'is_mover' => '0',

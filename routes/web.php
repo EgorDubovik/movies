@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DealController;
+use App\Http\Controllers\ApplicationController;
 
 Route::get('/', [DashboardController::class,'view'])->name('dashboard');
 
@@ -28,6 +29,11 @@ Route::prefix('order')->group(function (){
     Route::get('/application/send/{order}',[OrderController::class,'submit_application']);
     Route::delete('/application/destroy/{order}',[OrderController::class,'destroy_application']);
     Route::get('/application/confirm/{application}',[OrderController::class,'confirm_application']);
+
+});
+
+Route::prefix('application')->group(function(){
+    Route::get('/my/applications',[ApplicationController::class,'index']);
 });
 
 Route::prefix('deal')->group(function (){

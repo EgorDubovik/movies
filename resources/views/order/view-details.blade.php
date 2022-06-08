@@ -22,7 +22,7 @@
                     <div class="card">
                         <div class="card-header"><h3 class="card-title">USA Map</h3></div>
                         <div class="card-body">
-{{--                            <div id="vmap9" class="stateh h-300"></div>--}}
+                            {{--                            <div id="vmap9" class="stateh h-300"></div>--}}
 
                             <div id="map" style="height: 400px;"></div>
                         </div>
@@ -39,7 +39,7 @@
                                     <a href="auth/register">Registration</a>
                                 </div>
                             @else
-                                @include('order.application')
+                                @include('order.applications.application')
                             @endif
                         </div>
 
@@ -78,7 +78,7 @@
                                         <p class="mb-0">Volume :</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0">{{$order->volume}}  cb. ft.</p>
+                                        <p class="text-muted mb-0">{{$order->volume}} cb. ft.</p>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,9 @@
                                 <p class="mb-0">Created by:</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0"><a href="/company/{{$order->company->company_id}}"> {{$order->company->company_name}}</a></p>
+                                <p class="text-muted mb-0"><a
+                                        href="/company/{{$order->company->company_id}}"> {{$order->company->company_name}}</a>
+                                </p>
                             </div>
                         </div>
                         <hr>
@@ -114,12 +116,14 @@
                         <div class="row" style="padding-top: 20px; text-align: right">
                             <div class="btn-list">
                                 @can('delete', $order)
-                                <form method="post" action="/order/destroy/{{$order->id}}" onsubmit="confirm_on_delete(this);return false;">
-                                    @csrf
-                                    @method('delete')
-                                    <a href="/order/edit/{{$order->id}}/edit" class="btn btn-warning" style="margin-right: 20px">Update</a>
-                                    <button type="submit" class="btn btn-danger">Remove</button>
-                                </form>
+                                    <form method="post" action="/order/destroy/{{$order->id}}"
+                                          onsubmit="confirm_on_delete(this);return false;">
+                                        @csrf
+                                        @method('delete')
+                                        <a href="/order/edit/{{$order->id}}/edit" class="btn btn-warning"
+                                           style="margin-right: 20px">Update</a>
+                                        <button type="submit" class="btn btn-danger">Remove</button>
+                                    </form>
                                 @endcan
                             </div>
                         </div>
@@ -131,27 +135,27 @@
 
     </div>
     @can('delete', $order)
-    <script>
-        function confirm_on_delete(form){
-            swal({
-                    title: "Are you sure?",
-                    text: "Your will not be able to recover this order file!",
-                    type: "warning",
+        <script>
+            function confirm_on_delete(form) {
+                swal({
+                        title: "Are you sure?",
+                        text: "Your will not be able to recover this order file!",
+                        type: "warning",
 
-                    confirmButtonText: "Yes, delete it!",
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#6e7d88',
-                },
-                function(isConfirm) {
-                    if (isConfirm) {
-                        form.submit();
-                    } else {
-                        swal("Cancelled", "Your imaginary file is safe :)", "error");
-                    }
-                });
-        }
-    </script>
+                        confirmButtonText: "Yes, delete it!",
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#6e7d88',
+                    },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            form.submit();
+                        } else {
+                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        }
+                    });
+            }
+        </script>
     @endcan
 @stop
 
@@ -166,10 +170,11 @@
     <script src="{{ URL::asset('assets/js/sweet-alert.js')}}"></script>
 
     <!-- GOOGEL MAP -->
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ENV('GOOGLE_MAP_API')}}&callback=initMap&v=weekly" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ENV('GOOGLE_MAP_API')}}&callback=initMap&v=weekly"
+            defer></script>
     <script>
 
-        $(document).ready(function(){
+        $(document).ready(function () {
             var directionsService = new google.maps.DirectionsService();
             var map;
 
@@ -184,8 +189,8 @@
 
                 map = new google.maps.Map(document.getElementById("map"), myOptions);
 
-                var start = "Zurich, Switzerland";
-                var end = "Bern, Switzerland";
+                var start = new google.maps.LatLng({{$order->lat_from}}, {{$order->long_from}})
+                var end = new google.maps.LatLng({{$order->lat_to}}, {{$order->long_to}})
                 var method = 'DRIVING';
                 var request = {
                     origin: start,
@@ -195,7 +200,7 @@
 
                 var bounds = new google.maps.LatLngBounds();
 
-                directionsService.route(request, function(response, status) {
+                directionsService.route(request, function (response, status) {
 
                     // Check response status
                     if (status == google.maps.DirectionsStatus.OK) {
@@ -206,13 +211,17 @@
                         // Create our own Polyline for this step
                         var line = new google.maps.Polyline({
                             path: route.overview_path,
-                            strokeColor: 'red',
+                            strokeColor: 'blue',
                             strokeWeight: 3,
                             map: map,
                         });
 
-                        var marker = new google.maps.Marker({
+                        var marker_start = new google.maps.Marker({
                             position: start,
+                            map: map
+                        });
+                        var marker_end = new google.maps.Marker({
+                            position: end,
                             map: map
                         });
 
@@ -222,7 +231,6 @@
                             bounds.extend(route.overview_path[i]);
                         }
                         map.fitBounds(bounds);
-
 
 
                         //
@@ -237,46 +245,6 @@
                         // });
                     }
                 });
-
-
-                // Code courtesy of Larry Ross http://www.geocodezip.com/scripts/v3_epoly.js
-                google.maps.LatLng.prototype.distanceFrom = function(newLatLng) {
-                    var EarthRadiusMeters = 6378137.0; // meters
-                    var lat1 = this.lat();
-                    var lon1 = this.lng();
-                    var lat2 = newLatLng.lat();
-                    var lon2 = newLatLng.lng();
-                    var dLat = (lat2 - lat1) * Math.PI / 180;
-                    var dLon = (lon2 - lon1) * Math.PI / 180;
-                    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-                    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                    var d = EarthRadiusMeters * c;
-                    return d;
-                }
-
-                google.maps.Polyline.prototype.GetPointsAtDistance = function(metres) {
-                    var next = metres;
-                    var points = [];
-                    // some awkward special cases
-                    if (metres <= 0) return points;
-                    var dist = 0;
-                    var olddist = 0;
-                    for (var i = 1;
-                         (i < this.getPath().getLength()); i++) {
-                        olddist = dist;
-                        dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
-                        while (dist > next) {
-                            var p1 = this.getPath().getAt(i - 1);
-                            var p2 = this.getPath().getAt(i);
-                            var m = (next - olddist) / (dist - olddist);
-                            points.push(new google.maps.LatLng(p1.lat() + (p2.lat() - p1.lat()) * m, p1.lng() + (p2.lng() - p1.lng()) * m));
-                            next += metres;
-                        }
-                    }
-                    return points;
-                }
             }
 
             initialize();
