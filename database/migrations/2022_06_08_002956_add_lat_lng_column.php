@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->string('lat_from')->nullable()->after('zip_from');
-            $table->string('lng_from')->nullable()->after('lat_from');
+            $table->string('long_from')->nullable()->after('lat_from');
             $table->string('lat_to')->nullable()->after('zip_to');
-            $table->string('lng_to')->nullable()->after('lat_to');
+            $table->string('long_to')->nullable()->after('lat_to');
         });
     }
 
@@ -30,9 +30,9 @@ return new class extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->dropColumn('lat_from');
-            $table->dropColumn('lng_from');
+            $table->dropColumn('long_from');
             $table->dropColumn('lat_to');
-            $table->dropColumn('lng_to');
+            $table->dropColumn('long_to');
         });
     }
 };

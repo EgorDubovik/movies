@@ -23,12 +23,19 @@ class OrderController extends Controller
 
     public function store(OrderRequest $request){
 
+        $coordination_from = $this->getcoordination($request->address_from.' '.$request->zip_from);
+        $coordination_to = $this->getcoordination($request->address_to.' '.$request->zip_to);
+        //dd($coordination_from,$coordination_to);
         Order::create([
            'user_id' => Auth::user()->id,
             'address_from' => $request->address_from,
             'zip_from' => $request->zip_from,
+            'lat_from' => $coordination_from[1],
+            'long_from' => $coordination_from[2],
             'address_to' => $request->address_to,
             'zip_to' => $request->zip_to,
+            'lat_to' => $coordination_to[1],
+            'long_to' => $coordination_to[2],
             'description' => $request->description,
             'volume' => $request->volume,
             'price' => $request->price,
@@ -102,5 +109,15 @@ class OrderController extends Controller
         ]);
 
         return back();
+    }
+
+    private function getcoordination($address){
+        $address = str_replace(" ", "+", $address);
+        $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=".ENV('GOOGLE_MAP_API'));
+        $json = json_decode($json);
+        $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
+        $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+        $formatted_address = $json->{'results'}[0]->{'formatted_address'};
+        return array($formatted_address, $lat, $long);
     }
 }
