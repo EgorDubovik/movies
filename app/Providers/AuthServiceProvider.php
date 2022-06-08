@@ -44,6 +44,10 @@ class AuthServiceProvider extends ServiceProvider
            return false;
         });
 
+        Gate::define('view-applications',function (User $user){
+            return $user->is_driver;
+        });
+
         // Deals Gates
         Gate::define('view-deal',function (User $user, Deal $deal){
             return ($user->id === $deal->mover_id || $user->id === $deal->driver_id);

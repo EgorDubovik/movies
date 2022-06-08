@@ -18,7 +18,7 @@
                         <td>{{$application->id}}</td>
                         <td><a href="/user/{{$application->user->id}}">{{$application->user->company_name}}</a></td>
                         <td>{{$application->created_at}}</td>
-                        <td><a class="btn btn-success" href="/order/application/confirm/{{$application->id}}"> confirm</a></td>
+                        <td><a class="btn btn-success" href="/application/confirm/{{$application->id}}"> confirm</a></td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -33,7 +33,7 @@
     @endif
 @else
     @can('send-application',$order)
-        <a href="/order/application/send/{{$order->id}}" class="btn btn-success">Submit your application</a>
+        <a href="/application/send/{{$order->id}}" class="btn btn-success">Submit your application</a>
     @endcan
     @if($order->applications->contains('user_id',Auth::user()->id))
 
@@ -50,7 +50,7 @@
             </div>
 
             <div style="text-align: right">
-                <form action="/order/application/destroy/{{$order->id}}" method="post">
+                <form action="/application/destroy/{{$order->id}}" method="post">
                     @csrf
                     @method('delete')
                     <button type="submit" class="btn btn-danger"><i class="fa fa-remove"></i> Cancel</button>

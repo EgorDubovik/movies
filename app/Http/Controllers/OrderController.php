@@ -95,32 +95,9 @@ class OrderController extends Controller
     }
 
     public function destroy_application(Request $request, Order $order){
-        $application = Application::where(['user_id'=>Auth::user()->id,'order_id'=>$order->id,'confirm'=>0])->first();
-        if($application){
-            $application->delete();
-            return back();
-        } else {
-            abort(403);
-        }
+
     }
 
-    public function confirm_application(Application $application){
-        $this->authorize('confirm-application',$application);
-        $application->update([
-            'confirm'=>1
-        ]);
-        Deal::create([
-            'order_id'=>$application->order_id,
-            'mover_id'=>Auth::user()->id,
-            'driver_id'=>$application->user_id,
-        ]);
-
-        $application->order->update([
-           'status'=>Order::IS_PENDING
-        ]);
-
-        return back();
-    }
 
     private function getcoordination($address){
         $address = str_replace(" ", "+", $address);

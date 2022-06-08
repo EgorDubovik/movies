@@ -232,17 +232,6 @@
                         }
                         map.fitBounds(bounds);
 
-
-                        //
-                        // var points = line.GetPointsAtDistance(10000);
-                        //
-                        // points.forEach(function(point) {
-                        //
-                        //     var marker = new google.maps.Marker({
-                        //         position: point,
-                        //         map: map
-                        //     });
-                        // });
                     }
                 });
             }
