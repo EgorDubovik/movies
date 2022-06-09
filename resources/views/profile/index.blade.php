@@ -17,6 +17,9 @@
 
     <!-- ROW-1 OPEN -->
     <div class="row">
+        @if($errors->any())
+            @include("layout/error-message")
+        @endif
         <div class="col-xl-4">
             <div class="card">
                 <form method="post" action="/profile/change/logo">
@@ -59,15 +62,17 @@
                     <div class="card-title">Edit Password</div>
                 </div>
                 <div class="card-body">
+                    @include('layout.success-message',['status'=>'successful_password'])
+                    @include('layout.modify-errors',['status'=>'error_password'])
                     <div class="form-group">
                         <label class="form-label">Current Password</label>
                         <div class="wrap-input100 validate-input input-group" id="Password-toggle">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
                             </a>
-                            <input class="input100 form-control" type="password" placeholder="Current Password">
+                            <input class="input100 form-control" type="password" name="old_password" placeholder="Current Password">
                         </div>
-                        <!-- <input type="password" class="form-control" value="password"> -->
+
                     </div>
                     <div class="form-group">
                         <label class="form-label">New Password</label>
@@ -75,7 +80,7 @@
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
                             </a>
-                            <input class="input100 form-control" type="password" placeholder="New Password">
+                            <input class="input100 form-control" type="password" name="password" placeholder="New Password">
                         </div>
                         <!-- <input type="password" class="form-control" value="password"> -->
                     </div>
@@ -85,7 +90,7 @@
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
                             </a>
-                            <input class="input100 form-control" type="password" placeholder="Confirm Password">
+                            <input class="input100 form-control" type="password" name="password2" placeholder="Confirm Password">
                         </div>
                         <!-- <input type="password" class="form-control" value="password"> -->
                     </div>

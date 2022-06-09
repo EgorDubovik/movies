@@ -61,9 +61,7 @@
                             <span class="login100-form-title">
 									Registration
 								</span>
-                        @if($errors->any())
-                            @include("layout/error-message")
-                        @endif
+
                         <div class="wrap-input100 validate-input input-group">
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="mdi mdi-account" aria-hidden="true"></i>
