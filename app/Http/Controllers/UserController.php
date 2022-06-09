@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -25,5 +26,18 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('profile')->with('successful_password','Your password has been changed successful');
+    }
+
+    public function update(ProfileUpdateRequest $request){
+        Auth::user()->update([
+           'company_name' => $request->company_name,
+            'email' => $request->email,
+            'is_mover' => $request->has('mover'),
+            'is_driver' => $request->has('driver'),
+            'website' => $request->website,
+            'phone' => $request->phone,
+        ]);
+
+        return redirect()->route('profile')->with('successful_edit','Your information has been changed successful');
     }
 }

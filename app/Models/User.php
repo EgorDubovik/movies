@@ -24,7 +24,9 @@ class User extends Authenticatable
         'mc',
         'dot',
         'is_mover',
-        'is_driver'
+        'is_driver',
+        'phone',
+        'website',
     ];
 
     /**
