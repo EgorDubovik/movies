@@ -7,9 +7,16 @@ use App\Models\Application;
 use App\Models\Deal;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DealController extends Controller
 {
+
+    public function index(){
+
+        $deals = Deal::where('driver_id',Auth::user()->id)->orWhere('mover_id',Auth::user()->id)->orderByDesc('id')->get();
+        return view('deal.index', ['deals'=>$deals]);
+    }
 
     public function view(Deal $deal){
         $this->authorize('view-deal',$deal);

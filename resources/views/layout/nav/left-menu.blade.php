@@ -40,6 +40,11 @@
                         </li>
                     @endif
                     <li class="slide">
+                        <a class="side-menu__item has-link" data-bs-toggle="slide" href="/deal/my/deals"><i
+                                class="side-menu__icon fa fa-diamond"></i><span
+                                class="side-menu__label">My Deals</span></a>
+                    </li>
+                    <li class="slide">
                         <a class="side-menu__item has-link" data-bs-toggle="slide" href="/drivers"><i
                                 class="side-menu__icon fa fa-truck"></i><span
                                 class="side-menu__label">Drivers</span></a>

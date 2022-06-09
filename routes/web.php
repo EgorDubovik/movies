@@ -17,7 +17,7 @@ Route::prefix("auth")->group(function(){
     Route::post("/login", [LoginController::class,'login']);
     Route::get('/logout', [LoginController::class,'destroy']);
 });
-
+// Orders
 Route::prefix('order')->group(function (){
     Route::get('/create',[OrderController::class,'create']);
     Route::post('/create',[OrderController::class,'store']);
@@ -28,15 +28,18 @@ Route::prefix('order')->group(function (){
     Route::get('/my/orders', [OrderController::class,'my_orders'])->middleware('auth');
 
 });
-
+// Applications
 Route::prefix('application')->group(function(){
-    Route::get('/my/applications',[ApplicationController::class,'index']);
+    Route::get('/my/applications',[ApplicationController::class,'index'])->middleware('auth');
     Route::get('/confirm/{application}',[ApplicationController::class,'update']);
     Route::get('/send/{order}',[ApplicationController::class,'store']);
     Route::delete('/destroy/{order}',[ApplicationController::class,'destroy']);
 });
 
+
+// Deals
 Route::prefix('deal')->group(function (){
+    Route::get('/my/deals',[DealController::class,'index'])->middleware('auth');
     Route::get('/{deal}', [DealController::class,'view']);
     Route::post('/{deal}/update/customer',[DealController::class,'update_by_mover']);
     Route::post('/{deal}/update/driver',[DealController::class,'update_by_driver']);
