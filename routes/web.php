@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', [DashboardController::class,'view'])->name('dashboard');
 
@@ -46,6 +47,7 @@ Route::prefix('deal')->group(function (){
     Route::get('/{deal}/update/status/driver/{status}',[DealController::class,'update_status_driver']);
     Route::get('/{deal}/update/status/mover/{status}',[DealController::class,'update_status_mover']);
     Route::get('/{deal}/close',[DealController::class,'close']);
-
 });
+
+Route::get('/profile', [UserController::class,'index'])->middleware('auth');
 
