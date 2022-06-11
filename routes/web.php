@@ -53,6 +53,9 @@ Route::group(['prefix' => '/profile', 'middleware' => ['auth']], function (){
     Route::get('/', [UserController::class,'index'])->name('profile');
     Route::post('/change/password', [UserController::class,'change_password']);
     Route::post('/edit',[UserController::class, 'update']);
+    Route::get('/list',[UserController::class,'list']);
 });
+
+
 
 

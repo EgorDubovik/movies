@@ -40,4 +40,9 @@ class UserController extends Controller
 
         return redirect()->route('profile')->with('successful_edit','Your information has been changed successful');
     }
+
+    public function list(){
+        $users = User::where('id','<>', Auth::user()->id)->get();
+        return view('profile.list',['users'=>$users]);
+    }
 }
