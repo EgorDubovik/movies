@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Application;
 use App\Models\Deal;
 use App\Models\Order;
+use App\Models\Rating;
 use App\Models\User;
 use App\Policies\OrderPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -58,23 +59,46 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('update-deal-driver',function (User $user, Deal $deal){
             return  $user->id === $deal->driver_id;
         });
-
         Gate::define('change-deal-status-driver',function (User $user, Deal $deal){
            if ($user->is_driver && $deal->driver_id == $user->id && ($deal->status==Deal::ISNEW || $deal->status==Deal::IN_PROGRESS))
                return true;
            return false;
         });
-
         Gate::define('change-deal-status-mover',function (User $user, Deal $deal){
             if ($user->is_mover && $deal->mover_id == $user->id && $deal->status >= Deal::DELIVERED)
                 return true;
             return false;
         });
-
         Gate::define('close-deal',function (User $user, Deal $deal){
            if ($deal->status == Deal::CANCEL && $user->id == $deal->order->user_id)
                return true;
            return false;
+        });
+
+
+        // Rating
+        Gate::define('send-rating', function (User $sender, $receiver_id){
+            $deal = Deal::where(function ($query) use($sender,$receiver_id){
+                $query->where('mover_id', $sender->id);
+                $query->where('driver_id', $receiver_id);
+            })
+            ->orWhere(function ($query) use ($sender, $receiver_id){
+                $query->where('driver_id', '=', $sender->id);
+                $query->where('mover_id', '=', $receiver_id);
+            })->first();
+
+            $rating = Rating::where(function ($query) use($sender,$receiver_id){
+                $query->where('sender_id', $sender->id);
+                $query->where('receiver_id', $receiver_id);
+            })
+            ->orWhere(function ($query) use ($sender, $receiver_id){
+                $query->where('receiver_id', $sender->id);
+                $query->where('sender_id', $receiver_id);
+            })->first();
+
+            if ($deal && $deal->status >= Deal::DONE && !$rating)
+                return true;
+            return false;
         });
     }
 }

@@ -56,39 +56,65 @@
         <!-- PAGE-HEADER END -->
         <!-- CONTENT -->
         <div class="row">
-
             <div class="col-md-12  col-xl-6">
                 <div class="card">
-                    <div class="card-header">
-                        <h4>Customer information</h4>
-                    </div>
-                    <div class="card-body">
-                        @if(Auth::user()->id == $deal->mover_id)
-                            <form class="format-horizontal" method="post" action="/deal/{{$deal->id}}/update/customer">
-                                @csrf
-                                <div class="row mb-4">
-                                    <label for="inputName" class="col-md-3 form-label">Customer phone number:</label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="customer_phone" value="{{$deal->customer_phone}}"
-                                               class="form-control" id="inputName" placeholder="Customer phone number">
+                    @if(Auth::user()->id == $deal->mover_id)
+                        @if(Gate::check('send-rating',$deal->driver_id))
+                            <div class="card-header">
+                                <div> <span style="color:#868e96">Leave review about </span><strong>{{$deal->driver->company_name}}</strong></div>
+                            </div>
+                            <div class="card-body">
+                                <form method="post" action="/send/rating/{{$deal->driver_id}}">
+                                    @csrf
+                                    <div class="rating-stars block" id="company_rating" data-stars="5">
                                     </div>
-                                </div>
-                                <div class="row mb-4">
-                                    <label for="inputName" class="col-md-3 form-label">Customer first and last
-                                        Name:</label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="customer_fio" value="{{$deal->customer_fio}}"
-                                               class="form-control" id="inputName"
-                                               placeholder="Customer first and last Name:">
+
+                                    <div class="form-group mt-3">
+                                        <div class="form-floating floating-label">
+                                            <textarea class="form-control" placeholder="review" id="floatingTextarea"></textarea>
+                                            <label for="floatingTextarea">Reviews</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-0 mt-4 row justify-content-end">
-                                    <div class="col-md-9">
-                                        <button class="btn btn-warning">Update</button>
-                                    </div>
-                                </div>
-                            </form>
+                                    <div class="row"><button type="submit" class="btn btn-primary mt-4 mb-0">Submit</button></div>
+                                </form>
+                            </div>
                         @else
+                            <div class="card-header">
+                                <h4>Update customer information</h4>
+                            </div>
+                            <div class="card-body">
+
+                                <form class="format-horizontal" method="post" action="/deal/{{$deal->id}}/update/customer">
+                                    @csrf
+                                    <div class="row mb-4">
+                                        <label for="inputName" class="col-md-3 form-label">Customer phone number:</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="customer_phone" value="{{$deal->customer_phone}}"
+                                                   class="form-control" id="inputName" placeholder="Customer phone number">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <label for="inputName" class="col-md-3 form-label">Customer first and last
+                                            Name:</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="customer_fio" value="{{$deal->customer_fio}}"
+                                                   class="form-control" id="inputName"
+                                                   placeholder="Customer first and last Name:">
+                                        </div>
+                                    </div>
+                                    <div class="mb-0 mt-4 row justify-content-end">
+                                        <div class="col-md-9">
+                                            <button class="btn btn-warning">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        @endif
+                    @else
+                        <div class="card-header">
+                            <h4>Customer information</h4>
+                        </div>
+                        <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-4">Customer phone</div>
                                 <div class="col-md-8">{{$deal->customer_phone}}</div>
@@ -97,44 +123,69 @@
                                 <div class="col-md-4">Customer First and Last Name</div>
                                 <div class="col-md-8">{{$deal->customer_fio}}</div>
                             </div>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
+
                 </div>
             </div>
 
             <div class="col-md-12  col-xl-6" id="orders-line">
                 <div class="card">
-                    <div class="card-header">
-                        <h4>Driver information</h4>
-                    </div>
-                    <div class="card-body">
-
-                        @if(Auth::user()->id == $deal->driver_id)
-                            <form class="format-horizontal" method="post" action="/deal/{{$deal->id}}/update/driver">
-                                @csrf
-                                <div class="row mb-4">
-                                    <label for="inputName" class="col-md-3 form-label">Driver phone number:</label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="driver_phone" value="{{$deal->driver_phone}}"
-                                               class="form-control" id="inputName" placeholder="Driver phone number">
+                    @if(Auth::user()->id == $deal->driver_id)
+                        @if(Gate::check('send-rating', $deal->mover_id))
+                            <div class="card-header">
+                                <div> <span style="color:#868e96">Leave review about </span><strong>{{$deal->mover->company_name}}</strong></div>
+                            </div>
+                            <div class="card-body">
+                                <form method="post" action="/rating/send/{{$deal->mover_id}}">
+                                    @csrf
+                                    <div class="rating-stars block" id="company_rating" data-stars="5">
                                     </div>
-                                </div>
-                                <div class="row mb-4">
-                                    <label for="inputName" class="col-md-3 form-label">Customer first and last
-                                        Name:</label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="driver_fio" value="{{$deal->driver_fio}}"
-                                               class="form-control" id="inputName"
-                                               placeholder="Driver first and last Name:">
+                                    <div class="form-group mt-3">
+                                        <div class="form-floating floating-label">
+                                            <textarea name="comment" class="form-control" placeholder="review" id="floatingTextarea"></textarea>
+                                            <label for="floatingTextarea">Reviews</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-0 mt-4 row justify-content-end">
-                                    <div class="col-md-9">
-                                        <button class="btn btn-warning">Update</button>
-                                    </div>
-                                </div>
-                            </form>
+                                <div class="row"><button type="submit" class="btn btn-primary mt-4 mb-0">Submit</button></div>
+                                </form>
+                            </div>
                         @else
+                            <div class="card-header">
+                                <h4>Update your information</h4>
+                            </div>
+                            <div class="card-body">
+                                <form class="format-horizontal" method="post" action="/deal/{{$deal->id}}/update/driver">
+                                    @csrf
+                                    <div class="row mb-4">
+                                        <label for="inputName" class="col-md-3 form-label">Driver phone number:</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="driver_phone" value="{{$deal->driver_phone}}"
+                                                   class="form-control" id="inputName" placeholder="Driver phone number">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <label for="inputName" class="col-md-3 form-label">Customer first and last
+                                            Name:</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="driver_fio" value="{{$deal->driver_fio}}"
+                                                   class="form-control" id="inputName"
+                                                   placeholder="Driver first and last Name:">
+                                        </div>
+                                    </div>
+                                    <div class="mb-0 mt-4 row justify-content-end">
+                                        <div class="col-md-9">
+                                            <button class="btn btn-warning">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        @endif
+                    @else
+                        <div class="card-header">
+                            <h4>Driver information</h4>
+                        </div>
+                        <div class="card-body">
                             <div class="row mb-4">
                                 <div class="col-md-4">Driver phone</div>
                                 <div class="col-md-8">{{$deal->driver_phone}}</div>
@@ -143,8 +194,8 @@
                                 <div class="col-md-4">driver First and Last Name</div>
                                 <div class="col-md-8">{{$deal->driver_fio}}</div>
                             </div>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="row mt-4">
@@ -208,7 +259,7 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0"><a
-                                                    href="/company/{{$deal->order->company->company_id}}"> {{$deal->order->company->company_name}}</a>
+                                                    href="/profile/{{$deal->order->company->id}}"> {{$deal->order->company->company_name}}</a>
                                             </p>
                                         </div>
                                     </div>
@@ -238,4 +289,7 @@
     <script src="{{ URL::asset('assets/plugins/jvectormap/jquery-jvectormap-us-aea-en.js')}}"></script>
     <script src="{{ URL::asset('assets/js/jvectormap.js')}}"></script>
 
+    <!-- Rating -->
+    <script src="{{ URL::asset('assets/plugins/rating/jquery-rate-picker.js')}}"></script>
+    <script src="{{ URL::asset('assets/plugins/rating/rating-picker.js')}}"></script>
 @stop

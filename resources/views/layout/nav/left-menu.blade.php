@@ -2,7 +2,7 @@
     <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
     <div class="app-sidebar">
         <div class="side-header">
-            <a class="header-brand1" href="index.html">
+            <a class="header-brand1" href="/">
                 <img src="{{ URL::asset('assets/images/brand/logo.png')}}" class="header-brand-img desktop-logo" alt="logo">
                 <img src="{{ URL::asset('assets/images/brand/logo-1.png')}}" class="header-brand-img toggle-logo"
                      alt="logo">
@@ -45,13 +45,12 @@
                                 class="side-menu__label">My Deals</span></a>
                     </li>
                     <li class="slide">
-                        <a class="side-menu__item has-link" data-bs-toggle="slide" href="/drivers"><i
+                        <a class="side-menu__item has-link" data-bs-toggle="slide" href="/profile/list"><i
                                 class="side-menu__icon fa fa-truck"></i><span
-                                class="side-menu__label">Drivers</span></a>
+                                class="side-menu__label">Company</span></a>
                     </li>
 
-                @endif
-                @if(!Auth::check())
+                @else
                     <li style="text-align: center; padding-top: 30px">
                         If you whant this order, ypu need:<br/><br/>
                         <a href="/auth/login">Login</a>

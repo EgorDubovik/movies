@@ -28,7 +28,7 @@ if (typeof jQuery === 'undefined'){
 
 		$.each($(target + " > i"), function (index, item){
 			$(item).click(function (){
-				$("[name=" + target.replace("#", "") + "]").val(index);
+				$("[name=" + target.replace("#", "") + "]").val(index+1);
 				for (var i = 1; i <= options.max; i++){
 					$($(target + "> i")[i]).css("color", i <= index ? options.rgbOn : options.rgbOff);
 				}
@@ -43,7 +43,7 @@ if (typeof jQuery === 'undefined'){
 				}
 			});
             $(item).mouseleave(function(){
-                $("[name=" + target.replace("#", "") + "]").val(index);
+                //$("[name=" + target.replace("#", "") + "]").val(index+1);
                 for (var i = 1; i <= options.max; i++){
                     $($(target + "> i")[i]).css("color", i <= stars ? options.rgbOn : options.rgbOff);
                 }

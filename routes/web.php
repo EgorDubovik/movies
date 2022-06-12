@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RatingController;
 
 Route::get('/', [DashboardController::class,'view'])->name('dashboard');
 
@@ -49,6 +50,8 @@ Route::prefix('deal')->group(function (){
     Route::get('/{deal}/close',[DealController::class,'close']);
 });
 
+
+//Profile
 Route::group(['prefix' => '/profile', 'middleware' => ['auth']], function (){
     Route::get('/', [UserController::class,'index'])->name('profile');
     Route::post('/change/password', [UserController::class,'change_password']);
@@ -56,6 +59,10 @@ Route::group(['prefix' => '/profile', 'middleware' => ['auth']], function (){
     Route::get('/list',[UserController::class,'list']);
 });
 
+//Rating
+Route::group(['middleware' => ['auth']],function (){
+   Route::post('/rating/send/{receiver}', [RatingController::class,'create']);
+});
 
 
 
