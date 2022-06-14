@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PHPUnit\TextUI\ReflectionException;
 
 class Rating extends Model
 {
@@ -16,4 +17,9 @@ class Rating extends Model
       'star',
       'comment',
     ];
+
+
+    function sender(){
+        return $this->belongsTo(User::class,'sender_id');
+    }
 }

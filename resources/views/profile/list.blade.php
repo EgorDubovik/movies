@@ -5,7 +5,7 @@
 
         <!-- PAGE-HEADER -->
         <div class="page-header">
-            <h1 class="page-title">Edit Profile</h1>
+            <h1 class="page-title">List Profile</h1>
             <div>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Pages</a></li>
@@ -33,9 +33,9 @@
                             @foreach($users as $user)
                                 <tr>
                                     <td style="text-align: center"><img src="{{ URL::asset('assets/images/users/21.jpg')}}" alt="profile-user" class="avatar-lg  profile-user brround cover-image"></td>
-                                    <td class="align-middle"><a style="font-size: 18px;" href="/profile/{{$user->id}}">{{$user->company_name}}</a></td>
+                                    <td class="align-middle"><a style="font-size: 18px;" href="/profile/view/{{$user->id}}">{{$user->company_name}}</a></td>
                                     <td>
-                                        <div class="rating-stars block my-rating-7"  data-rating="2">
+                                        <div class="rating-stars block my-rating-7"  data-rating="{{$user->rating->avg('star')}}">
                                         </div>
                                     </td>
                                     <td>100</td>

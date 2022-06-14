@@ -51,4 +51,8 @@ class User extends Authenticatable
     function is_mover(){
         return $this->is_mover;
     }
+
+    function rating(){
+        return $this->hasMany(Rating::class,'receiver_id');
+    }
 }

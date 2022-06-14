@@ -54,6 +54,7 @@ Route::prefix('deal')->group(function (){
 //Profile
 Route::group(['prefix' => '/profile', 'middleware' => ['auth']], function (){
     Route::get('/', [UserController::class,'index'])->name('profile');
+    Route::get('/view/{user}',[UserController::class,'view']);
     Route::post('/change/password', [UserController::class,'change_password']);
     Route::post('/edit',[UserController::class, 'update']);
     Route::get('/list',[UserController::class,'list']);

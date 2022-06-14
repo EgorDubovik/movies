@@ -100,7 +100,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><a
-                                        href="/company/{{$order->company->company_id}}"> {{$order->company->company_name}}</a>
+                                        href="/profile/view/{{$order->company->id}}"> {{$order->company->company_name}}</a>
                                 </p>
                             </div>
                         </div>

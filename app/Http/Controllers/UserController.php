@@ -45,4 +45,9 @@ class UserController extends Controller
         $users = User::where('id','<>', Auth::user()->id)->get();
         return view('profile.list',['users'=>$users]);
     }
+
+    public function view(User $user){
+
+        return view('profile.view',['user' => $user]);
+    }
 }

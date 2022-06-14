@@ -259,7 +259,7 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0"><a
-                                                    href="/profile/{{$deal->order->company->id}}"> {{$deal->order->company->company_name}}</a>
+                                                    href="/profile/view/{{$deal->order->company->id}}"> {{$deal->order->company->company_name}}</a>
                                             </p>
                                         </div>
                                     </div>
