@@ -58,7 +58,7 @@
                 <div class="wrap-login100 p-6" style="width:500px">
                     Текс о заверщении регистрации, после того как администратор проверит заявку придет письмо на почту
                     а пока <br>
-                    <a href="/login">Login</a>
+                    <a href="/auth/login">Login</a>
                 </div>
             </div>
             <!-- CONTAINER CLOSED -->
