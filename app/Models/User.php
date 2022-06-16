@@ -55,4 +55,8 @@ class User extends Authenticatable
     function rating(){
         return $this->hasMany(Rating::class,'receiver_id');
     }
+
+    function orders(){
+        return $this->hasMany(Order::class);
+    }
 }

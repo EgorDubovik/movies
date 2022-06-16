@@ -170,7 +170,7 @@
     <script src="{{ URL::asset('assets/js/sweet-alert.js')}}"></script>
 
     <!-- GOOGEL MAP -->
-{{--    <script src="https://maps.googleapis.com/maps/api/js?key={{ENV('GOOGLE_MAP_API')}}"></script> --}}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ENV('GOOGLE_MAP_API')}}"></script>
     <script>
 
         $(document).ready(function () {

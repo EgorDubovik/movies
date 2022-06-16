@@ -38,7 +38,7 @@
                                         <div class="rating-stars block my-rating-7"  data-rating="{{$user->rating->avg('star')}}">
                                         </div>
                                     </td>
-                                    <td>100</td>
+                                    <td>{{$user->orders->count()}}</td>
                                     <td>{{$user->created_at}}</td>
                                 </tr>
                             @endforeach

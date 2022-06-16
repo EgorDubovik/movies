@@ -98,9 +98,13 @@
                 <div class="card">
 
                     <div class="card-header">
-                        <h3 class="card-title">New Orders</h3>
+                        <h3 class="card-title">Orders</h3>
                     </div>
                     <div class="card-body">
+                        <div class="row">
+                            <span>{{$user->orders->count()}} orders</span>
+
+                        </div>
                         view new orders if it is mover company
                     </div>
                     <div class="card-footer text-end">
