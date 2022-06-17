@@ -117,6 +117,13 @@ class OrderController extends Controller
                 'id' => $order->id,
                 'lat' => $order->lat_from,
                 'lng' => $order->long_from,
+                'volume' => $order->volume,
+                'price' => $order->price,
+                'address_from' => $order->address_from,
+                'zip_from' => $order->zip_from,
+                'address_from' => $order->address_to,
+                'address_from' => $order->zip_to,
+
             ];
         }
         return view('order.search',['points'=>$points]);

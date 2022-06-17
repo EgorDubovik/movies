@@ -49,7 +49,8 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        List orders
+                        <div id="orders-line">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -74,6 +75,7 @@
         var map;
         var polyline = null;
         var circles = [];
+        var gmarkers = [];
 
         function initialize() {
             var center = new google.maps.LatLng(37.719096, -97.398866);
@@ -101,6 +103,11 @@
                 travelMode: google.maps.DirectionsTravelMode[method]
             };
 
+            gmarkers.forEach(function (m){
+                m.setMap(null);
+            })
+            gmarkers = [];
+
             directionsService.route(request, function (response, status) {
 
                 // Check response status
@@ -124,17 +131,16 @@
 
                     var points = polyline.GetPointsAtDistance(radius);
 
-                    //  view all points
-
-                    createMarker(response.routes[0].legs[0].start_location,'A')
-                    createMarker(response.routes[0].legs[0].end_location,'B')
+                    // createMarker(response.routes[0].legs[0].start_location,'A')
+                    // createMarker(response.routes[0].legs[0].end_location,'B')
                     circles.forEach(function (circle){
                        circle.setMap(null);
                     });
                     circles = [];
+                    fo = [];
                     points.forEach(function(point) {
-                        var m = arePointsNear(orders, {lat: point.lat(), lng: point.lng()}, radius);
-                        console.log(m)
+                        fo = arePointsNear(orders, {lat: point.lat(), lng: point.lng()}, fo, radius);
+                        console.log(fo);
                         var cityCircle = new google.maps.Circle({
                             strokeColor: "#FF0000",
                             strokeOpacity: 0.2,
@@ -146,19 +152,35 @@
                             radius: radius
                         })
                         circles.push(cityCircle);
-                        // var marker = new google.maps.Marker({
-                        //     position: point,
-                        //     map: map
-                        // });
                     });
+                    fo.forEach(function (f){
+                       createMarker(f,'');
+                    });
+                    viewOrdersList(fo);
                 }
             });
         }
 
-        function arePointsNear(checkPoints, centerPoint, radius) {
-            var points = [];
+        function ordersParseFloat(){
+            orders.forEach(function (order){
+                order.lat = parseFloat(order.lat);
+                order.lng = parseFloat(order.lng);
+            });
+
+            console.log(orders);
+        }
+
+        function arePointsNear(checkPoints, centerPoint, points, radius) {
             checkPoints.forEach(function(checkPoint) {
                 if(google.maps.geometry.spherical.computeDistanceBetween(checkPoint, centerPoint) <= radius){
+                    let shouldSkip = false;
+                    points.forEach(function(point){
+                        if(checkPoint.id == point.id) {
+                            shouldSkip = true
+                            return;
+                        }
+                    })
+                    if(shouldSkip) return points;
                     points.push(checkPoint)
                 }
             });
@@ -171,9 +193,45 @@
                 title: title,
                 map: map
             });
+            gmarkers.push(marker);
+        }
+
+        function viewOrdersList(list){
+            $('#orders-line').html("");
+            list.forEach(function (order) {
+                $('#orders-line').append(
+                    '<div class="card">'+
+                    '<div class="card-status bg-green br-te-7 br-ts-7" style=""></div>'+
+                    '<div class="card-body">'+
+                    '<div class="row">Order # '+order.id+'</div> '+
+                    '<div class="row">'+
+                    '<div class="created-card">Status: New</div>'+
+                    '<div class="col-lg-2 col-md-12">'+
+                    '<div>'+
+                    '<strong style="font-size: 18px">'+order.volume+'</strong> cb.ft.'+
+                    '</div>'+
+                    '<div>'+
+                    '<strong style="font-size: 18px">$'+order.price+' </strong> per. cb'+
+                    '</div>'+
+                    '</div>'+
+                    '<div class="col-lg-10 col-md-12">'+
+                    '<div>'+
+                    '<span style="color: #9d9d9d">From:</span> <span class="address-card"> '+order.address_from+' '+order.zip_from+'</span>'+
+                    '</div>'+
+                    '<div style="margin-top: 10px">'+
+                    '<span style="color: #9d9d9d;margin-right: 18px;">To:</span> <span class="address-card"> '+order.address_to+' '+order.zip_to+'</span>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '<a href="/order/'+order.id+'" class="stretched-link"></a>'+
+                    '</div>'+
+                    '</div>'
+                )
+            });
         }
 
         $(document).ready(function () {
+            ordersParseFloat();
             initialize();
         })
 
