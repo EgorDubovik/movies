@@ -19,7 +19,7 @@
 
         <div class="col-md-12  col-xl-6">
             <div class='' style="padding-bottom: 20px;">
-                <a class="btn btn-primary" href="/order/create"><i class="fa fa-search"></i> Search by route</a>
+                <a class="btn btn-primary" href="/order/search"><i class="fa fa-search"></i> Search by route</a>
                 @can('create', \App\Models\Order::class)
                     <a class="btn btn-success" href="/order/create"><i class="fa fa-plus"></i> Add new order</a>
                 @endcan

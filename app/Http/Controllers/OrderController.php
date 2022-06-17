@@ -98,7 +98,6 @@ class OrderController extends Controller
 
     }
 
-
     private function getcoordination($address){
         $address = str_replace(" ", "+", $address);
         $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=".ENV('GOOGLE_MAP_API'));
@@ -107,5 +106,19 @@ class OrderController extends Controller
         $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
         $formatted_address = $json->{'results'}[0]->{'formatted_address'};
         return array($formatted_address, $lat, $long);
+    }
+
+    public function search_view(){
+
+        $orders = Order::where('status',Order::IS_NEW)->get();
+        $points = [];
+        foreach ($orders as $order) {
+            $points[] = [
+                'id' => $order->id,
+                'lat' => $order->lat_from,
+                'lng' => $order->long_from,
+            ];
+        }
+        return view('order.search',['points'=>$points]);
     }
 }

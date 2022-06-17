@@ -23,13 +23,14 @@ Route::prefix("auth")->group(function(){
 Route::prefix('order')->group(function (){
     Route::get('/create',[OrderController::class,'create']);
     Route::post('/create',[OrderController::class,'store']);
+    Route::get('/search', [OrderController::class, 'search_view']);
     Route::get('/{id}',[OrderController::class,'view'])->name('order.view');
     Route::delete('/destroy/{order}',[OrderController::class,'destroy']);
     Route::get('/edit/{order}/edit', [OrderController::class, 'edit']);
     Route::put('/{order}', [OrderController::class, 'update']);
     Route::get('/my/orders', [OrderController::class,'my_orders'])->middleware('auth');
-
 });
+
 // Applications
 Route::prefix('application')->group(function(){
     Route::get('/my/applications',[ApplicationController::class,'index'])->middleware('auth');
