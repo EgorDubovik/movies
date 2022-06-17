@@ -121,8 +121,8 @@ class OrderController extends Controller
                 'price' => $order->price,
                 'address_from' => $order->address_from,
                 'zip_from' => $order->zip_from,
-                'address_from' => $order->address_to,
-                'address_from' => $order->zip_to,
+                'address_to' => $order->address_to,
+                'zip_to' => $order->zip_to,
 
             ];
         }
