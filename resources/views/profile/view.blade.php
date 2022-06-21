@@ -28,10 +28,10 @@
                     <div class="card-body">
                         <div class="text-center chat-image mb-5">
                             <div class="avatar avatar-xxl chat-profile mb-3 brround">
-                                <a class="" href="profile.html"><img alt="avatar" src="{{ URL::asset('assets/images/users/7.jpg')}}" class="brround"></a>
+                                <a class="" href="#"><img alt="avatar" src="{{ URL::asset('assets/images/users/7.jpg')}}" class="brround"></a>
                             </div>
                             <div class="main-chat-msg-name">
-                                <a href="profile.html">
+                                <a href="#">
                                     <h5 class="mb-1 text-dark fw-semibold">{{Auth::user()->company_name}}</h5>
                                 </a>
                                 <p class="text-muted mt-0 mb-0 pt-0 fs-13">{{(Auth::user()->is_mover) ? "Mover" : ""}} {{(Auth::user()->is_driver) ? "Driver" : ""}}</p>
@@ -102,10 +102,10 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <span>{{$user->orders->count()}} orders</span>
+                            <span>{{$orders->count()}} orders</span>
 
                         </div>
-                        view new orders if it is mover company
+                        @include('order.order-view',['status'=>'all'])
                     </div>
                     <div class="card-footer text-end">
 

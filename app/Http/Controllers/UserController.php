@@ -47,7 +47,7 @@ class UserController extends Controller
     }
 
     public function view(User $user){
-
-        return view('profile.view',['user' => $user]);
+        $orders = $user->orders;
+        return view('profile.view',['user' => $user, 'orders' => $orders]);
     }
 }
