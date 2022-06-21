@@ -90,10 +90,6 @@ class AuthServiceProvider extends ServiceProvider
             $rating = Rating::where(function ($query) use($sender,$receiver_id){
                 $query->where('sender_id', $sender->id);
                 $query->where('receiver_id', $receiver_id);
-            })
-            ->orWhere(function ($query) use ($sender, $receiver_id){
-                $query->where('receiver_id', $sender->id);
-                $query->where('sender_id', $receiver_id);
             })->first();
 
             if ($deal && $deal->status >= Deal::DONE && !$rating)

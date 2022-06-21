@@ -64,7 +64,7 @@
                                 <div> <span style="color:#868e96">Leave review about </span><strong>{{$deal->driver->company_name}}</strong></div>
                             </div>
                             <div class="card-body">
-                                <form method="post" action="/send/rating/{{$deal->driver_id}}">
+                                <form method="post" action="/rating/send/{{$deal->driver_id}}">
                                     @csrf
                                     <div class="rating-stars block" id="company_rating" data-stars="5">
                                     </div>
