@@ -34,12 +34,12 @@
                             </thead>
                             <tbody>
                             @forelse($deals as $deal)
-                                <tr>
-                                    <td>{{$deal->id}}</td>
-                                    <td>{{$deal->created_at}}</td>
-                                    <td><a href="/order/{{$deal->order->id}}">Order #{{$deal->order->id}}</a> </td>
-                                    <td>{{\App\Models\Deal::STATUS[$deal->status]}}</td>
-                                    <td></td>
+                                <tr >
+                                    <td class="align-middle">{{$deal->id}}</td>
+                                    <td class="align-middle">{{\Carbon\Carbon::parse($deal->created_at)->diffForHumans()}}</td>
+                                    <td class="align-middle"><a href="/order/{{$deal->order->id}}">Order #{{$deal->order->id}}</a> </td>
+                                    <td class="align-middle">{{\App\Models\Deal::STATUS[$deal->status]}}</td>
+                                    <td class="align-middle"><a href="/deal/{{$deal->id}}" class="btn btn-success">view</a> </td>
                                 </tr>
                                 @endforeach
                             </tbody>
