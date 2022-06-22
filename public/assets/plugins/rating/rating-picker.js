@@ -5,3 +5,6 @@
         }
     });
 
+    // $.ratePicker("#company_view_rating", {
+    //
+    // });
