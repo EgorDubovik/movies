@@ -44,7 +44,8 @@ class ApplicationController extends Controller
 
         Application::create([
             'order_id' => $order->id,
-            'user_id' => Auth::user()->id
+            'user_id' => Auth::user()->id,
+            'comment' => $request->comment,
         ]);
         return redirect()->route('order.view',['id'=>$order->id]);
     }

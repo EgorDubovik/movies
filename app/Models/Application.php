@@ -12,6 +12,7 @@ class Application extends Model
         'order_id',
         'user_id',
         'confirm',
+        'comment',
         'created_at'
     ];
 
