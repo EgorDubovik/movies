@@ -39,7 +39,7 @@
                                     <td>{{$application->created_at}}</td>
                                     <td><a href="/order/{{$application->order->id}}">Order #{{$application->order->id}}</a> </td>
                                     <td>{{$application->confirm}}</td>
-                                    <td></td>
+                                    <td><a href="/order/{{$application->order->id}}" class="btn-success btn"><i class="fa fa-eye"></i> view</a> </td>
                                 </tr>
                                 @endforeach
                             </tbody>
