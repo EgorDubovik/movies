@@ -35,7 +35,7 @@ Route::prefix('order')->group(function (){
 Route::prefix('application')->group(function(){
     Route::get('/my/applications',[ApplicationController::class,'index'])->middleware('auth');
     Route::get('/confirm/{application}',[ApplicationController::class,'update']);
-    Route::get('/send/{order}',[ApplicationController::class,'store']);
+    Route::post('/send/{order}',[ApplicationController::class,'store']);
     Route::delete('/destroy/{order}',[ApplicationController::class,'destroy']);
 });
 

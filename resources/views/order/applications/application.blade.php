@@ -38,7 +38,12 @@
     @endif
 @else
     @can('send-application',$order)
-        <a href="/application/send/{{$order->id}}" class="btn btn-success">Submit your application</a>
+        <form method="post" action="/application/send/{{$order->id}}">
+            @csrf
+            <textarea name="comment" class="form-control mb-4" placeholder="Comment for application"></textarea>
+            <button  class="btn btn-success btn-block">Submit your application</button>
+        </form>
+
     @endcan
     @if($order->applications->contains('user_id',Auth::user()->id))
 
