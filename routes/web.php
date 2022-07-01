@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -65,6 +66,13 @@ Route::group(['prefix' => '/profile', 'middleware' => ['auth']], function (){
 Route::group(['middleware' => ['auth']],function (){
    Route::post('/rating/send/{receiver}', [RatingController::class,'create']);
 });
+
+
+// Notifications
+Route::prefix('notifications')->group(function (){
+    Route::get('/read/{notification}', [NotificationController::class, 'read']);
+});
+
 
 
 

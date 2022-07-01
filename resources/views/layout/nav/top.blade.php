@@ -38,10 +38,15 @@
                                 </a>
                             </div>
                             <!-- FULL-SCREEN -->
+                            @if(Auth::check())
                             <div class="dropdown  d-flex notifications">
                                 <a class="nav-link icon" data-bs-toggle="dropdown"><i
-                                        class="fe fe-bell"></i><span class=" pulse"></span>
+                                        class="fe fe-bell"></i>
+                                    @if(!Auth::user()->unreadNotifications->isEmpty())
+                                        <span class=" pulse"></span>
+                                    @endif
                                 </a>
+
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                     <div class="drop-heading border-bottom">
                                         <div class="d-flex">
@@ -50,52 +55,30 @@
                                         </div>
                                     </div>
                                     <div class="notifications-menu">
-                                        <a class="dropdown-item d-flex" href="notify-list.html">
+                                        @foreach(Auth::user()->unreadNotifications as $notification)
+
+                                        <a class="dropdown-item d-flex" href="/notifications/read/{{$notification->id}}">
                                             <div class="me-3 notifyimg  bg-primary brround box-shadow-primary">
-                                                <i class="fe fe-mail"></i>
+                                                <i class="{{$notification->data['icon']}}"></i>
                                             </div>
                                             <div class="mt-1 wd-80p">
-                                                <h5 class="notification-label mb-1">New Application received
+                                                <h5 class="notification-label mb-1">{{$notification->data['subject']}}
                                                 </h5>
-                                                <span class="notification-subtext">3 days ago</span>
+                                                <span class="notification-subtext">{{\Carbon\Carbon::parse($notification->created_at)->diffForHumans()}}</span>
                                             </div>
                                         </a>
-                                        <a class="dropdown-item d-flex" href="notify-list.html">
-                                            <div class="me-3 notifyimg  bg-secondary brround box-shadow-secondary">
-                                                <i class="fe fe-check-circle"></i>
-                                            </div>
-                                            <div class="mt-1 wd-80p">
-                                                <h5 class="notification-label mb-1">Project has been
-                                                    approved</h5>
-                                                <span class="notification-subtext">2 hours ago</span>
-                                            </div>
-                                        </a>
-                                        <a class="dropdown-item d-flex" href="notify-list.html">
-                                            <div class="me-3 notifyimg  bg-success brround box-shadow-success">
-                                                <i class="fe fe-shopping-cart"></i>
-                                            </div>
-                                            <div class="mt-1 wd-80p">
-                                                <h5 class="notification-label mb-1">Your Product Delivered
-                                                </h5>
-                                                <span class="notification-subtext">30 min ago</span>
-                                            </div>
-                                        </a>
-                                        <a class="dropdown-item d-flex" href="notify-list.html">
-                                            <div class="me-3 notifyimg bg-pink brround box-shadow-pink">
-                                                <i class="fe fe-user-plus"></i>
-                                            </div>
-                                            <div class="mt-1 wd-80p">
-                                                <h5 class="notification-label mb-1">Friend Requests</h5>
-                                                <span class="notification-subtext">1 day ago</span>
-                                            </div>
-                                        </a>
+                                        @endforeach
+
+
                                     </div>
                                     <div class="dropdown-divider m-0"></div>
                                     <a href="notify-list.html"
                                        class="dropdown-item text-center p-3 text-muted">View all
                                         Notification</a>
                                 </div>
+
                             </div>
+
                             <!-- NOTIFICATIONS -->
                             <div class="dropdown  d-flex message">
                                 <a class="nav-link icon text-center" data-bs-toggle="dropdown">
@@ -190,7 +173,7 @@
                                 </div>
                             </div>
                             <!-- MESSAGE-BOX -->
-
+                            @endif
                             <!-- SIDE-MENU -->
                             @if(Auth::check())
                             <div class="dropdown d-flex profile-1">

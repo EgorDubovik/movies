@@ -8,6 +8,7 @@ use App\Models\Deal;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\DatabaseNotification;
 
 class OrderController extends Controller
 {
@@ -49,6 +50,11 @@ class OrderController extends Controller
     public function view(Request $request){
 
         $order = Order::find($request->id);
+
+//        $n = Auth::user()->unreadNotifications;
+//        $r = DatabaseNotification::find($n[0]->id);
+//        dd($r);
+
         return view('order.view-details')->with('order',$order);
     }
 
