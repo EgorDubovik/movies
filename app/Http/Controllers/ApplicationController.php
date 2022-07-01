@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Models\Deal;
 use App\Models\Order;
+use App\Notifications\SendAplication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
@@ -41,6 +43,8 @@ class ApplicationController extends Controller
     public function store(Request $request,Order $order)
     {
         $this->authorize('send-application',$order);
+
+        Notification::send($order->company,new SendAplication($order->id, Auth::user()->id));
 
         Application::create([
             'order_id' => $order->id,
