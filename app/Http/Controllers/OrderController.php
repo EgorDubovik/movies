@@ -51,10 +51,6 @@ class OrderController extends Controller
 
         $order = Order::find($request->id);
 
-//        $n = Auth::user()->unreadNotifications;
-//        $r = DatabaseNotification::find($n[0]->id);
-//        dd($r);
-
         return view('order.view-details')->with('order',$order);
     }
 

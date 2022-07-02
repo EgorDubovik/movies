@@ -63,6 +63,7 @@ class SendAplication extends Notification
             'url' => '/order/'.$this->order_id,
             'subject' => 'New Application received',
             'icon' => 'fe fe-mail',
+            'color' => 'primary',
             'sender_id' => $this->sender_id,
         ];
     }

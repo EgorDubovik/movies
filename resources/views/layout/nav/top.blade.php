@@ -55,10 +55,10 @@
                                         </div>
                                     </div>
                                     <div class="notifications-menu">
-                                        @foreach(Auth::user()->unreadNotifications as $notification)
+                                        @forelse(Auth::user()->unreadNotifications as $notification)
 
                                         <a class="dropdown-item d-flex" href="/notifications/read/{{$notification->id}}">
-                                            <div class="me-3 notifyimg  bg-primary brround box-shadow-primary">
+                                            <div class="me-3 notifyimg  bg-{{$notification->data['color']}} brround box-shadow-primary">
                                                 <i class="{{$notification->data['icon']}}"></i>
                                             </div>
                                             <div class="mt-1 wd-80p">
@@ -67,7 +67,9 @@
                                                 <span class="notification-subtext">{{\Carbon\Carbon::parse($notification->created_at)->diffForHumans()}}</span>
                                             </div>
                                         </a>
-                                        @endforeach
+                                        @empty
+                                            <p class="text-center p-3 text-muted">No notification</p>
+                                        @endforelse
 
 
                                     </div>

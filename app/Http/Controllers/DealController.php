@@ -6,8 +6,10 @@ use App\Http\Requests\DealCustomerUpdateRequest;
 use App\Models\Application;
 use App\Models\Deal;
 use App\Models\Order;
+use App\Notifications\ChangeDealStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class DealController extends Controller
 {
@@ -55,6 +57,7 @@ class DealController extends Controller
             $deal->update([
                 'status'=> $status
             ]);
+            Notification::send($deal->mover, new ChangeDealStatus($deal->id, Auth::user()->id, $status));
             return back();
         } else {
             abort(403);

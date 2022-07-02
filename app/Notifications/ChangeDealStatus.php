@@ -2,27 +2,29 @@
 
 namespace App\Notifications;
 
+use App\Models\Deal;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ConfirmAplication extends Notification
+class ChangeDealStatus extends Notification
 {
     use Queueable;
 
     private $deal_id;
     private $sender_id;
-
+    private $status;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($deal_id, $sender_id)
+    public function __construct($deal_id, $sender_id, $status)
     {
         $this->sender_id = $sender_id;
         $this->deal_id = $deal_id;
+        $this->status = $status;
     }
 
     /**
@@ -60,10 +62,11 @@ class ConfirmAplication extends Notification
     {
         return [
             'url' => '/deal/'.$this->deal_id,
-            'subject' => 'Confirm your application',
-            'icon' => 'fe fe-mail',
-            'color' => 'primary',
+            'subject' => 'Driver change status to "'.Deal::STATUS[$this->status].'"',
+            'icon' => 'fe fe-check-circle',
+            'color' => 'secondary',
             'sender_id' => $this->sender_id,
+            'status' => $this->status,
         ];
     }
 }
