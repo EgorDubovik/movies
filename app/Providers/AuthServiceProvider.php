@@ -9,6 +9,7 @@ use App\Models\Rating;
 use App\Models\User;
 use App\Policies\OrderPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -95,6 +96,11 @@ class AuthServiceProvider extends ServiceProvider
             if ($deal && $deal->status >= Deal::DONE && !$rating)
                 return true;
             return false;
+        });
+
+        // Notification
+        Gate::define('read-notifications', function (User $user, DatabaseNotification $notification){
+            return $user->id === $notification->notifiable_id;
         });
     }
 }
