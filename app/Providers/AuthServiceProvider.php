@@ -71,7 +71,7 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
         Gate::define('close-deal',function (User $user, Deal $deal){
-           if ($deal->status == Deal::CANCEL && $user->id == $deal->order->user_id)
+           if ($deal->status == Deal::CANCEL && ($user->id == $deal->driver_id || $user->id == $deal->mover_id))
                return true;
            return false;
         });

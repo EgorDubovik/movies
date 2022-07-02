@@ -83,6 +83,8 @@ class DealController extends Controller
 
     public function close(Deal $deal){
 
+        $this->authorize('close-deal', $deal);
+
         $order = $deal->order;
 
         // Change order status for new
