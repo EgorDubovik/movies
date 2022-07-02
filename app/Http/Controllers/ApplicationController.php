@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Models\Deal;
 use App\Models\Order;
+use App\Notifications\ConfirmAplication;
 use App\Notifications\SendAplication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -90,7 +91,8 @@ class ApplicationController extends Controller
         $application->update([
             'confirm'=>1
         ]);
-        Deal::create([
+
+        $deal = Deal::create([
             'order_id'=>$application->order_id,
             'mover_id'=>Auth::user()->id,
             'driver_id'=>$application->user_id,
@@ -99,6 +101,8 @@ class ApplicationController extends Controller
         $application->order->update([
             'status'=>Order::IS_PENDING
         ]);
+
+        Notification::send($application->user, new ConfirmAplication($deal->id, Auth::user()->id));
 
         return back();
     }
