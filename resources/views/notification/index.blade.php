@@ -43,7 +43,12 @@
                                     </div>
                                     <div class="media-body ms-3 d-flex">
                                         <div class="">
-                                            <p class="fs-15 text-dark fw-bold mb-0">{{App\Models\User::find($notification->data['sender_id'])->company_name}}</p>
+                                            <p class="fs-15 text-dark fw-bold mb-0">
+                                                {{App\Models\User::find($notification->data['sender_id'])->company_name}}
+                                                @if(is_null($notification->read_at))
+                                                    <span class="badge bg-success ms-3 px-2 pb-1 mb-1">New notification</span>
+                                                @endif
+                                            </p>
                                             <p class="mb-0 fs-13 text-dark"><a href="/notifications/read/{{$notification->id}}">{{$notification->data['subject']}}</a> </p>
                                         </div>
                                         <div class="notify-time">
