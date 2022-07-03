@@ -38,7 +38,7 @@
                                     <td class="align-middle">{{$deal->id}}</td>
                                     <td class="align-middle">{{\Carbon\Carbon::parse($deal->created_at)->diffForHumans()}}</td>
                                     <td class="align-middle"><a href="/order/{{$deal->order->id}}">Order #{{$deal->order->id}}</a> </td>
-                                    <td class="align-middle">{{\App\Models\Deal::STATUS[$deal->status]}}</td>
+                                    <td class="align-middle"><span class="badge bg-success-transparent rounded-pill text-{{\App\Models\Deal::STATUS_COLOR[$deal->status]}} p-2 px-3">{{\App\Models\Deal::STATUS[$deal->status]}}</span></td>
                                     <td class="align-middle"><a href="/deal/{{$deal->id}}" class="btn btn-success"><i class="fa fa-eye"></i> view</a> </td>
                                 </tr>
                                 @endforeach

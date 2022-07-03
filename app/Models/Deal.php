@@ -14,6 +14,7 @@ class Deal extends Model
     public const DONE = 3;
     public const CANCEL = 4;
     public const STATUS = ['New','In progress','Delivered','Done','Canceled'];
+    public const STATUS_COLOR = ['primary', 'warning', 'success', 'success', 'danger'];
     use HasFactory;
 
     protected $fillable = [
