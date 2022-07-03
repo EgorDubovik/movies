@@ -90,6 +90,12 @@
                                                 </a>
                                                 <input class="input100 border-start-0 form-control ms-0" type="password" name="password" placeholder="Password">
                                             </div>
+                                            <div class="row mt-3" style="margin-left: 2px;">
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" name="remember" value="1" checked="">
+                                                    <span class="custom-control-label">Remember me</span>
+                                                </label>
+                                            </div>
                                             <div class="text-end pt-4">
                                                 <p class="mb-0"><a href="forgot-password.html" class="text-primary ms-1">Forgot Password?</a></p>
                                             </div>
