@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth']],function (){
 // Notifications
 Route::prefix('notifications')->group(function (){
     Route::get('/read/{notification}', [NotificationController::class, 'read']);
+    Route::get('/', [NotificationController::class, 'index']);
 });
 
 
