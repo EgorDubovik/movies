@@ -17,7 +17,7 @@
         <!-- CONTENT -->
         <div class="row">
 
-            <div class="col-md-12  col-xl-6">
+            <div class="col-md-12  col-xl-6 m-auto">
                 <div class='' style="padding-bottom: 20px;">
                     @can('create', \App\Models\Order::class)
                         <a class="btn btn-success" href="/order/create"><i class="fa fa-plus"></i> Add new order</a>
