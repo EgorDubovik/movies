@@ -36,7 +36,7 @@
                             @forelse($applications as $application)
                                 <tr>
                                     <td>{{$application->id}}</td>
-                                    <td>{{$application->created_at}}</td>
+                                    <td>{{\Carbon\Carbon::parse($application->created_at)->diffForHumans()}}</td>
                                     <td><a href="/order/{{$application->order->id}}">Order #{{$application->order->id}}</a> </td>
                                     <td>{{$application->confirm}}</td>
                                     <td><a href="/order/{{$application->order->id}}" class="btn-success btn"><i class="fa fa-eye"></i> view</a> </td>
