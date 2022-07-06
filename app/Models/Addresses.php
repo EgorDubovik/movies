@@ -17,5 +17,7 @@ class Addresses extends Model
         'city',
         'zip',
         'state',
+        'lat',
+        'long',
     ];
 }

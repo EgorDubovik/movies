@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
+use App\Models\Addresses;
 use App\Models\Application;
 use App\Models\Deal;
 use Illuminate\Http\Request;
@@ -27,17 +28,36 @@ class OrderController extends Controller
 
 
 
-        $coordination_from = $this->getcoordination($request->address_from.' '.$request->zip_from);
-        $coordination_to = $this->getcoordination($request->address_to.' '.$request->zip_to);
+        $coordination_from = $this->getcoordination($request->address_from_line1.' '.$request->address_from_lin2.' '.$request->city_from.' '.$request->zip_from);
+        $coordination_to = $this->getcoordination($request->address_to_line1.' '.$request->address_to_lin2.' '.$request->city_to.' '.$request->zip_to);
 
+        $address_from = Addresses::create([
+            'line1' => $request->address_from_line1,
+            'line2' => $request->address_from_line2,
+            'city'  => $request->city_from,
+            'zip'   => $request->zip_from,
+            'state' => $request->state_from,
+            'lat'   => $coordination_from[1],
+            'long'  => $coordination_from[2],
+        ]);
+
+        $address_to = Addresses::create([
+            'line1' => $request->address_to_line1,
+            'line2' => $request->address_to_line2,
+            'city'  => $request->city_to,
+            'zip'   => $request->zip_to,
+            'state' => $request->state_to,
+            'lat'   => $coordination_to[1],
+            'long'  => $coordination_to[2],
+        ]);
 
         Order::create([
-           'user_id'        => Auth::user()->id,
-            'address_from'  => $request->address_from,
+            'user_id'       => Auth::user()->id,
+            'address_from'  => $address_from->id,
             'zip_from'      => $request->zip_from,
             'lat_from'      => $coordination_from[1],
             'long_from'     => $coordination_from[2],
-            'address_to'    => $request->address_to,
+            'address_to'    => $address_to->id,
             'zip_to'        => $request->zip_to,
             'lat_to'        => $coordination_to[1],
             'long_to'       => $coordination_to[2],

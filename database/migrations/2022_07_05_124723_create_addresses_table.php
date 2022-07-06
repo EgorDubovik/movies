@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('city');
             $table->string('zip');
             $table->string('state');
+            $table->string('lat')->nullable();
+            $table->string('long')->nullable();
             $table->timestamps();
         });
     }
