@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('rule')->default(0);
             $table->string("avatar")->nullable();
+            $table->string('website')->nullable();
             $table->boolean('active')->default(0);
             $table->rememberToken();
             $table->timestamps();

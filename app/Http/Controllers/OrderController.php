@@ -52,20 +52,14 @@ class OrderController extends Controller
         ]);
 
         Order::create([
-            'user_id'       => Auth::user()->id,
-            'address_from'  => $address_from->id,
-            'zip_from'      => $request->zip_from,
-            'lat_from'      => $coordination_from[1],
-            'long_from'     => $coordination_from[2],
-            'address_to'    => $address_to->id,
-            'zip_to'        => $request->zip_to,
-            'lat_to'        => $coordination_to[1],
-            'long_to'       => $coordination_to[2],
-            'description'   => $request->description,
-            'volume'        => $request->volume,
-            'price'         => $request->price,
-            'date_send'     => $request->date_send,
-            'date_receive'  => $request->date_receive,
+            'user_id'           => Auth::user()->id,
+            'address_from_id'   => $address_from->id,
+            'address_to_id'     => $address_to->id,
+            'description'       => $request->description,
+            'volume'            => $request->volume,
+            'price'             => $request->price,
+            'date_send'         => $request->date_send,
+            'date_receive'      => $request->date_receive,
         ]);
 
         return redirect()->back()->with('successful', 'Your order created successful');

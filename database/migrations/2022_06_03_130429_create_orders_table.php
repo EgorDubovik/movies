@@ -16,10 +16,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('address_from');
-            $table->integer('zip_from');
-            $table->string('address_to');
-            $table->integer('zip_to');
+            $table->integer('address_from_id');
+            $table->integer('address_to_id');
             $table->text('description')->nullable();
             $table->float('volume');
             $table->float('price')->nullable();

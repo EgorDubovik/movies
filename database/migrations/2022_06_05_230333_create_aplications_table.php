@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('order_id');
             $table->integer('user_id');
+            $table->string('comment')->nullable();
             $table->boolean('confirm')->default(0);
             $table->timestamps();
         });
