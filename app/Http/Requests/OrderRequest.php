@@ -24,10 +24,14 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'address_from' => 'required',
+            'address_from_line1' => 'required',
+            'city_from' => 'required',
             'zip_from' => 'required',
-            'address_to' => 'required',
+            'state_from' => 'required',
+            'address_to_line1' => 'required',
+            'city_to' => 'required',
             'zip_to' => 'required',
+            'state_to' => 'required',
             'volume' => 'required',
             'price' => 'required',
         ];

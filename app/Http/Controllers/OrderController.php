@@ -24,15 +24,19 @@ class OrderController extends Controller
 
     public function store(OrderRequest $request){
 
+
+
+
         $coordination_from = $this->getcoordination($request->address_from.' '.$request->zip_from);
         $coordination_to = $this->getcoordination($request->address_to.' '.$request->zip_to);
-        //dd($coordination_from,$coordination_to);
+
+
         Order::create([
            'user_id'        => Auth::user()->id,
             'address_from'  => $request->address_from,
             'zip_from'      => $request->zip_from,
             'lat_from'      => $coordination_from[1],
-        'long_from'         => $coordination_from[2],
+            'long_from'     => $coordination_from[2],
             'address_to'    => $request->address_to,
             'zip_to'        => $request->zip_to,
             'lat_to'        => $coordination_to[1],
