@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,8 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            UserSeed::class
-        ]);
+        User::factory()->count(10)->create()->each(function ($user){
+            $orders = Order::factory()->count(rand(1,3))->make()->each(function ($order){
+
+            });
+            $user->orders()->saveMany($orders);
+        });
     }
 }

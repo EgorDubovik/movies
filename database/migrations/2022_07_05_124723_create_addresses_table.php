@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('line1')->nullable();
             $table->string('line2')->nullable();
             $table->string('city');
-            $table->string('zip');
-            $table->string('state');
+            $table->char('state', 2);
+            $table->char('zip', 5);
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
             $table->timestamps();

@@ -16,14 +16,8 @@ class Order extends Model
 
     protected $fillable =[
         'user_id',
-        'address_from',
-        'zip_from',
-        'lat_from',
-        'long_from',
-        'address_to',
-        'zip_to',
-        'lat_to',
-        'long_to',
+        'address_from_id',
+        'address_to_id',
         'description',
         'volume',
         'price',
