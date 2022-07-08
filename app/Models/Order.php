@@ -42,5 +42,13 @@ class Order extends Model
         return $this->hasOne(Deal::class,'order_id');
     }
 
+    public function address_from(){
+        return $this->hasOne(Addresses::class,'id','address_from_id');
+    }
+
+    public function address_to(){
+        return $this->hasOne(Addresses::class,'id','address_to_id');
+    }
+
 
 }
