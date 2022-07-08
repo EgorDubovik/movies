@@ -28,12 +28,21 @@ class AddressesFactory extends Factory
         $line = rand(0,count($this-> addresses)-1);
         $row  = rand(0,count($this-> addresses[$line])-1);
         $address = $this->addresses[$line][$row];
+
+        $address_s = implode("+",$address);
+        $address_s = str_replace(" ", "+", $address_s);
+        $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address_s&key=".ENV('GOOGLE_MAP_API'));
+        $json = json_decode($json);
+        $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
+        $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
         return [
             'line1' =>$address['street'],
             'line2' => '',
             'city' => $address['city'],
             'zip' => $address['zip'],
             'state' => $address['state'],
+            'lat' => $lat,
+            'long' => $long
         ];
     }
 }
