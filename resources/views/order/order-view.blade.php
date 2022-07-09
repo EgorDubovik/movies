@@ -17,10 +17,10 @@
                 </div>
                 <div class="col-lg-10 col-md-12">
                     <div>
-                        <span style="color: #9d9d9d">From:</span> <span class="address-card"> {{$order->address_from.' '.$order->zip_from}} </span>
+                        <span style="color: #9d9d9d">From:</span> <span class="address-card"> {{$order->address_from->city.' '.$order->address_from->state.' ,'.$order->address_from->zip}} </span>
                     </div>
                     <div style="margin-top: 10px">
-                        <span style="color: #9d9d9d;margin-right: 18px;">To:</span> <span class="address-card">{{$order->address_to.' '.$order->zip_to}}</span>
+                        <span style="color: #9d9d9d;margin-right: 18px;">To:</span> <span class="address-card">{{$order->address_to->city.' '.$order->address_to->state.' ,'.$order->address_to->zip}}</span>
                     </div>
                 </div>
             </div>
