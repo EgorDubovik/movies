@@ -20,4 +20,9 @@ class Addresses extends Model
         'lat',
         'long',
     ];
+
+    function full_address(){
+        return $this->line1." ".$this->line2.", ".$this->city." ".$this->state.", ".$this->zip;
+
+    }
 }

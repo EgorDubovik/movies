@@ -58,7 +58,7 @@
                                 <p class="mb-0">Addres from:</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{$order->address_from}}, {{$order->zip_from}}</p>
+                                <p class="text-muted mb-0">{{$order->address_from->full_address()}}</p>
                             </div>
                         </div>
                         <hr>
@@ -67,7 +67,7 @@
                                 <p class="mb-0">Addres to:</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{$order->address_to}}, {{$order->zip_to}}</p>
+                                <p class="text-muted mb-0">{{$order->address_to->full_address()}}</p>
                             </div>
                         </div>
                         <hr>
