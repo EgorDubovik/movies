@@ -27,4 +27,11 @@ class FavoriteController extends Controller
         }
         return back();
     }
+
+    function list(){
+
+        $favorites = Favorite::where('owner_id', Auth::user()->id)->get();
+
+        return view('favorite.list', ['favorites' => $favorites]);
+    }
 }

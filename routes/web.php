@@ -79,7 +79,8 @@ Route::group(['prefix' => 'notifications', 'middleware' => ['auth']],function ()
 
 Route::group(['prefix' => 'favorite', 'middleware' => ['auth']], function (){
    Route::get('/add/{user}', [FavoriteController::class, 'add_to_favorite']);
-   Route::get('/remove/{user}', [FavoriteController::class, 'delete']);
+   Route::delete('/remove/{user}', [FavoriteController::class, 'delete']);
+   Route::get('/list', [FavoriteController::class, 'list']);
 });
 
 

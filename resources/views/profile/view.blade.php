@@ -50,7 +50,7 @@
                         @else
                             <div class="text-center">
                                 <p>In your favorite list</p>
-                                <a href="/favorite/remove/{{$user->id}}" class="btn-danger btn">remove from favorite</a>
+                                @include('favorite.remove-button',['id'=>$user->id,'text'=>'remove from favorite'])
                             </div>
                         @endif
                     </div>

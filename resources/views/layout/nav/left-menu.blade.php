@@ -49,7 +49,11 @@
                                 class="side-menu__icon fa fa-truck"></i><span
                                 class="side-menu__label">Company</span></a>
                     </li>
-
+                    <li class="slide">
+                        <a class="side-menu__item has-link" data-bs-toggle="slide" href="/favorite/list"><i
+                                class="side-menu__icon fa fa-star"></i><span
+                                class="side-menu__label">Favorite</span></a>
+                    </li>
                 @else
                     <li style="text-align: center; padding-top: 30px">
                         If you whant this order, ypu need:<br/><br/>

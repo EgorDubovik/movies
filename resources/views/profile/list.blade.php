@@ -39,7 +39,7 @@
                                         @if(Gate::check('add-to-favorite', $user))
                                             <a href="/favorite/add/{{$user->id}}" class="btn-success btn"><i class="fa fa-plus"></i> add to favorite</a>
                                         @else
-                                            <a href="/favorite/remove/{{$user->id}}" class="btn-danger btn">remove from favorite</a>
+                                            @include('favorite.remove-button',['id'=>$user->id,'text'=>'remove'])
                                         @endif
 
                                     </td>
@@ -59,6 +59,7 @@
                         <tr>
                             <th></th>
                             <th>Name</th>
+                            <th>Favorite</th>
                             <th>Rating</th>
                             <th>Orders</th>
                             <th>Start date</th>
