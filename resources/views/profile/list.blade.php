@@ -24,6 +24,7 @@
                         <tr>
                             <th></th>
                             <th>Name</th>
+                            <th>Favorite</th>
                             <th>Rating</th>
                             <th>Orders</th>
                             <th>Start date</th>
@@ -33,14 +34,21 @@
                             @foreach($users as $user)
                                 <tr>
                                     <td style="text-align: center"><img src="{{ URL::asset('assets/images/users/21.jpg')}}" alt="profile-user" class="avatar-lg  profile-user brround cover-image"></td>
-                                    <td class="align-middle"><a style="font-size: 18px;" href="/profile/view/{{$user->id}}">{{$user->company_name}}</a></td>
+                                    <td class="align-middle"><a style="font-size: 18px;" href="/profile/view/{{$user->id}}">{{$user->company_name}}</a>  </td>
+                                    <td class="align-middle">
+                                        @if(Gate::check('add-to-favorite', $user))
+                                            <a href="/favorite/add/{{$user->id}}" class="btn-success btn"><i class="fa fa-plus"></i> add to favorite</a>
+                                        @else
+                                            <a href="/favorite/remove/{{$user->id}}" class="btn-danger btn">remove from favorite</a>
+                                        @endif
+
+                                    </td>
                                     <td class="align-middle">
                                         <div style="color: #9d9d9d;" class="mb-2">
                                             <span class="rating-stars my-rating-7"  data-rating="{{$user->rating->avg('star')}}"></span>
                                             <span style="margin-left: 10px; font-weight: bold">{{$user->rating->avg('star')}}</span>
                                             <span style="margin-left: 20px;">{{$user->rating->count()}} Reviews</span>
                                         </div>
-
                                     </td>
                                     <td class="align-middle">{{$user->orders->count()}}</td>
                                     <td>{{$user->created_at}}</td>

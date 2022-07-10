@@ -134,15 +134,15 @@ class OrderController extends Controller
         $points = [];
         foreach ($orders as $order) {
             $points[] = [
-                'id' => $order->id,
-                'lat' => $order->lat_from,
-                'lng' => $order->long_from,
-                'volume' => $order->volume,
-                'price' => $order->price,
-                'address_from' => $order->address_from,
-                'zip_from' => $order->zip_from,
-                'address_to' => $order->address_to,
-                'zip_to' => $order->zip_to,
+                'id'            => $order->id,
+                'lat'           => $order->lat_from,
+                'lng'           => $order->long_from,
+                'volume'        => $order->volume,
+                'price'         => $order->price,
+                'address_from'  => $order->address_from,
+                'zip_from'      => $order->zip_from,
+                'address_to'    => $order->address_to,
+                'zip_to'        => $order->zip_to,
 
             ];
         }

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Application;
 use App\Models\Deal;
+use App\Models\Favorite;
 use App\Models\Order;
 use App\Models\Rating;
 use App\Models\User;
@@ -102,5 +103,15 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('read-notifications', function (User $user, DatabaseNotification $notification){
             return $user->id === $notification->notifiable_id;
         });
+
+        // Favorite
+        Gate::define('add-to-favorite', function (User $user, User $company){
+           $f = Favorite::where('company_id', $company->id)
+                        ->where('owner_id', $user->id)->first();
+           if(!$f)
+               return true;
+           return false;
+        });
+
     }
 }

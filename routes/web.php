@@ -10,6 +10,7 @@ use App\Http\Controllers\DealController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\FavoriteController;
 
 Route::get('/', [DashboardController::class,'view'])->name('dashboard');
 
@@ -72,6 +73,13 @@ Route::group(['middleware' => ['auth']],function (){
 Route::group(['prefix' => 'notifications', 'middleware' => ['auth']],function (){
     Route::get('/read/{notification}', [NotificationController::class, 'read']);
     Route::get('/', [NotificationController::class, 'index']);
+});
+
+// Favorite
+
+Route::group(['prefix' => 'favorite', 'middleware' => ['auth']], function (){
+   Route::get('/add/{user}', [FavoriteController::class, 'add_to_favorite']);
+   Route::get('/remove/{user}', [FavoriteController::class, 'delete']);
 });
 
 
