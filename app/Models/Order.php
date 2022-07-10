@@ -22,7 +22,7 @@ class Order extends Model
         'volume',
         'price',
         'date_send',
-        'date_recive',
+        'date_receive',
         'status',
         ];
 

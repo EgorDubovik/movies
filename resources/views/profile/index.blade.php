@@ -119,7 +119,7 @@
                             <div class="social social-profile-buttons me-2">
                                 <a class="social-icon text-primary" href="javascript:void(0)"><i class="fe fe-globe"></i></a>
                             </div>
-                            <a href="javascript:void(0)" class="my-auto">www.abcd.com</a>
+                            <a href="{{Auth::user()->website}}" class="my-auto">{{Auth::user()->website}}</a>
                         </li>
                         <li class="list-group-item d-flex ps-3">
                             <div class="social social-profile-buttons me-2">
