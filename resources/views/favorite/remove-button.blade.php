@@ -1,4 +1,4 @@
-<form action="/favorite/remove/{{$id}}" method="post" onsubmit="remove(this)">
+<form action="/favorite/remove/{{$id}}" method="post" onsubmit="remove(this);return false;">
     @csrf
     @method('DELETE')
     <button type="submit" class="btn btn-danger">{{$text}}</button>

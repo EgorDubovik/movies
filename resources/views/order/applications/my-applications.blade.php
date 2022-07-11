@@ -38,7 +38,7 @@
                                     <td>{{$application->id}}</td>
                                     <td>{{\Carbon\Carbon::parse($application->created_at)->diffForHumans()}}</td>
                                     <td><a href="/order/{{$application->order->id}}">Order #{{$application->order->id}}</a> </td>
-                                    <td>{{$application->confirm}}</td>
+                                    <td>{{\App\Models\Application::STATUS[$application->status]}}</td>
                                     <td><a href="/order/{{$application->order->id}}" class="btn-success btn"><i class="fa fa-eye"></i> view</a> </td>
                                 </tr>
                                 @endforeach

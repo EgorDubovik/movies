@@ -89,8 +89,12 @@ class ApplicationController extends Controller
         $this->authorize('confirm-application',$application);
 
         $application->update([
-            'confirm'=>1
+            'status' => Application::CONFIRM,
         ]);
+
+        Application::where('order_id',$application->order_id)
+            ->where('id','<>',$application->id)->update(['status' => Application::NOTHIREDE]);
+
 
         $deal = Deal::create([
             'order_id'=>$application->order_id,

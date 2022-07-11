@@ -35,7 +35,7 @@ class Order extends Model
     }
 
     public function confirmed_application(){
-        return $this->hasOne(Application::class)->where('confirm',1);
+        return $this->hasOne(Application::class)->where('status',Application::CONFIRM);
     }
 
     public function deal(){
